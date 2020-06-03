@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../header/Header";
-import Style from "./Accueil.module.scss";
+import Style from "./Home.module.scss";
 import bgMain from "../../assets/imgAccueil/bgMain.svg";
 import bg1 from "../../assets/imgAccueil/bg1.svg";
 import bg2 from "../../assets/imgAccueil/bg2.svg";
@@ -10,7 +10,7 @@ import bg5 from "../../assets/imgAccueil/bg5.svg";
 import bg6 from "../../assets/imgAccueil/bg6.svg";
 
 
-const Accueil = () => {
+const Home = () => {
     return (
         <>
             <Header/>
@@ -27,4 +27,4 @@ const Accueil = () => {
     )
 }
 
-export default Accueil;
+export default Home;

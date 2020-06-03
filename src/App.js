@@ -1,13 +1,10 @@
 import React from 'react';
-import './App.css';
-import { Accueil } from "./components";
+import { Home } from "./components";
 
 function App() {
   return (
-    <div className="App">
-      <Accueil/>
-    </div>
-  );
+    <Home/>      
+  )
 }
 
 export default App;
