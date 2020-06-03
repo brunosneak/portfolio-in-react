@@ -31,3 +31,68 @@
 .bg6 {
     background-image: url(../../assets/imgAccueil/bg6.svg);
 }
+
+.start {
+    align-items: center;
+    background-color: #000000;
+    border: 0.2rem solid #fff;
+    border-radius: 10rem;
+    bottom: 17.5rem;
+    color: #fff;
+    display: flex;
+    font-family: 'Dosis', sans-serif;
+    font-size: 3.5rem;
+    height: 14rem;
+    justify-content: center;
+    left: 0;
+    margin: auto;
+    opacity: 0.7;
+    position: absolute;
+    right: 0;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 14rem;
+    outline: none;
+    cursor: pointer;
+}
+
+.boiteInfo{
+    align-items: center;
+    background-color: #333;
+    border-radius: 25px;
+    bottom: 15px;
+    color: #fff;
+    display: flex;
+    font-family: 'Dosis', sans-serif;
+    height: 150px;
+    justify-content: center;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    width: 500px;
+    .flechesDir{
+        width: 40%;
+        .flecheGauche, .flecheDroite{
+            height: 50px;
+        }
+        .flecheHautBas{
+            height: 100px;
+        }
+    }
+    p{
+        width: 40%;
+        span{
+            text-decoration: underline;
+        }
+    }
+    .croix{
+        height: 20px;
+        position: absolute;
+        right: 12px;
+        top: 12px;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
