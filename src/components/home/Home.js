@@ -12,17 +12,36 @@ import croix from "../../assets/imgAccueil/croix.svg";
 import flecheDroite from "../../assets/imgAccueil/flecheDroite.svg";
 import flecheGauche from "../../assets/imgAccueil/flecheGauche.svg";
 import flecheHautBas from "../../assets/imgAccueil/flecheHautBas.svg";
+import perso from "../../assets/imgAccueil/sautPersoVide.svg";
 
 class Home extends Component {
 
     constructor(){
         super();
-        
+        this.state = {
+            left: "",
+            opacity: ""
+        }
+    }
+
+    disapear = (event) => {
+        event.stopPropagation();
+        this.setState({
+            opacity: 0
+        })
+    }
+
+    jump = () => {
+        setInterval(() => {
+            this.setState({
+                left: this.state.left + "-198.7px"
+            })  
+        }, 1000);
     }
 
     render(){
         return (
-            <>
+            <div className={ Style.container }>
                 <Header/>
                 <section>
                     <img src={ bgMain } className={ Style.bgMain } alt="main-background"/>
@@ -34,9 +53,11 @@ class Home extends Component {
                     <img src={ bg6 } className={ Style.bg6 } alt="wall-background"/>
                 </section>
 
+                <div className={ Style.masquePerso }>
+                    <img style={ this.state } className={ Style.perso } src={ perso } alt="Personnage saute dans le vide"/>
+                </div>
 
-
-                <button type="button" className={ Style.start }>START</button>
+                <button type="button" onClick={ this.jump } className={ Style.start }>START</button>
 
                 <section className={ Style.boiteInfo }>
                     <div className={ Style.flechesDir }>
@@ -47,9 +68,9 @@ class Home extends Component {
                     <p><span>But du jeu</span> : Récupérer les pièces pour gagner des points en utilisant
                         les flèches directionnelles de votre clavier pour vous déplacer.<br/> Atteindre 30.000 points.
                     </p>
-                    <img className={ Style.croix } src={ croix } alt="croix"/>
+                    <img className={ Style.croix } onClick={ this.disapear } src={ croix } alt="croix"/>
                 </section>
-            </>
+            </div>
         )
     }
 }

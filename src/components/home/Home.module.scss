@@ -1,76 +1,55 @@
+.container {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 20% 40% 20% 20%;
+    grid-template-areas: 
+    "header header header"
+    ". . ."
+    ". start ."
+    ". box .";
+    place-items: center;
+}
+
 .bgMain, .bg1, .bg2, .bg3, .bg4, .bg5, .bg6  {
-    background-image: url(../../assets/imgAccueil/bgMain.svg);
     background-size: cover;
     bottom: 0;
     left: 0;
     position: absolute;
     right: 0;
     top: 0;
-}
-
-.bg1 {
-    background-image: url(../../assets/imgAccueil/bg1.svg);
-}
-
-.bg2 {
-    background-image: url(../../assets/imgAccueil/bg2.svg);
-}
-
-.bg3 {
-    background-image: url(../../assets/imgAccueil/bg3.svg);
-}
-
-.bg4 {
-    background-image: url(../../assets/imgAccueil/bg4.svg);
-}
-
-.bg5 {
-    background-image: url(../../assets/imgAccueil/bg5.svg);
-}
-
-.bg6 {
-    background-image: url(../../assets/imgAccueil/bg6.svg);
+    min-height: 100vh;
 }
 
 .start {
-    align-items: center;
     background-color: #000000;
     border: 0.2rem solid #fff;
     border-radius: 10rem;
-    bottom: 17.5rem;
     color: #fff;
-    display: flex;
     font-family: 'Dosis', sans-serif;
-    font-size: 3.5rem;
-    height: 14rem;
-    justify-content: center;
-    left: 0;
-    margin: auto;
+    font-size: 2.5rem;
+    grid-area: start;
+    height: 12rem;
     opacity: 0.7;
-    position: absolute;
-    right: 0;
     text-decoration: none;
-    text-transform: uppercase;
-    width: 14rem;
+    width: 12rem;
     outline: none;
     cursor: pointer;
 }
 
 .boiteInfo{
+    grid-area: box;
     align-items: center;
     background-color: #333;
     border-radius: 25px;
-    bottom: 15px;
     color: #fff;
     display: flex;
     font-family: 'Dosis', sans-serif;
-    height: 150px;
     justify-content: center;
-    left: 0;
-    margin: 0 auto;
-    position: absolute;
-    right: 0;
+    padding: 1rem 0;
+    position: relative;
     width: 500px;
+    z-index: 1;
     .flechesDir{
         width: 40%;
         .flecheGauche, .flecheDroite{
@@ -89,10 +68,26 @@
     .croix{
         height: 20px;
         position: absolute;
-        right: 12px;
         top: 12px;
+        right: 12px;
         &:hover{
             cursor: pointer;
         }
+    }
+}
+
+.masquePerso{
+    height: 179px;
+    left: 46%;
+    overflow: hidden;
+    position: absolute;
+    top: 45%;
+    width: 135px;
+    .perso{
+        height: 296px;
+        left: -33px;
+        position: absolute;
+        top: -54px;
+        width: 2506px;
     }
 }
