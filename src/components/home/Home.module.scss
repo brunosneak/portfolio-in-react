@@ -2,10 +2,10 @@
     height: 100vh;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: 20% 40% 20% 20%;
+    grid-template-rows: 20% 45% 15% 20%;
     grid-template-areas: 
     "header header header"
-    ". . ."
+    ". perso ."
     ". start ."
     ". box .";
     place-items: center;
@@ -13,12 +13,40 @@
 
 .bgMain, .bg1, .bg2, .bg3, .bg4, .bg5, .bg6  {
     background-size: cover;
+    background-position: center;
     bottom: 0;
     left: 0;
     position: absolute;
     right: 0;
     top: 0;
-    min-height: 100vh;
+}
+
+.bgMain {
+    background-image: url(../../assets/imgAccueil/bgMain.svg);
+}
+
+.bg1 {
+    background-image: url(../../assets/imgAccueil/bg1.svg);
+}
+
+.bg2 {
+    background-image: url(../../assets/imgAccueil/bg2.svg);
+}
+
+.bg3 {
+    background-image: url(../../assets/imgAccueil/bg3.svg);
+}
+
+.bg4 {
+    background-image: url(../../assets/imgAccueil/bg4.svg);
+}
+
+.bg5 {
+    background-image: url(../../assets/imgAccueil/bg5.svg);
+}
+
+.bg6 {
+    background-image: url(../../assets/imgAccueil/bg6.svg);
 }
 
 .start {
@@ -48,7 +76,8 @@
     justify-content: center;
     padding: 1rem 0;
     position: relative;
-    width: 500px;
+    max-height: 15rem;
+    max-width: 50rem;
     z-index: 1;
     .flechesDir{
         width: 40%;
@@ -77,11 +106,12 @@
 }
 
 .masquePerso{
+    grid-area: perso;
     height: 179px;
-    left: 46%;
     overflow: hidden;
     position: absolute;
-    top: 45%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
     width: 135px;
     .perso{
         height: 296px;
