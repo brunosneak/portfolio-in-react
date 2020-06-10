@@ -1,9 +1,9 @@
 import React from 'react';
-import { Home } from "./components";
+import { Home, NavPage, CvPage } from "./components";
 
 function App() {
   return (
-    <Home/>      
+    <CvPage/>
   )
 }
 

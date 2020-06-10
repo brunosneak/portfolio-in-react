@@ -1,0 +1,77 @@
+.container {
+    background-color: #000;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 20% 40% 30% 10%;
+    grid-template-areas: 
+    "header header header"
+    ". platform ."
+    ". nav ."
+    ". social .";
+    place-items: center;
+}
+
+.platform {
+    grid-area: platform;
+    background-image: url(../../assets/imgContact/plateforme.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 76%;
+    width: 100%;
+    position: relative;
+    top: 3rem;
+    right: 2rem;
+}
+
+.nav {
+    grid-area: nav;
+    color: #fff;
+    li{
+        font-size: 3rem;
+        margin-bottom: 2.5rem;
+        text-align: center;
+        &::after {
+            content: '';
+            background-color: #fff;
+            display: flex;
+            height: 0.2rem;
+            margin-top: 2rem;
+            width: 50rem;
+        }
+    }
+    :last-child::after {
+        content: none;
+    }
+}
+
+.social {
+    grid-area: social;
+    display: flex;
+    justify-content: space-between;
+    min-width: 10rem;
+    li {
+        height: 3.5rem;
+        width: 3.5rem;
+        .github, .github {
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+}
+
+.maskQuestion {
+    height: 22.2rem;
+    grid-column-start: 2;
+    grid-row-start: 2;
+    overflow: hidden;
+    bottom: 7rem;
+    left: 1rem;
+    width: 18.5rem;
+    position: relative;
+    .question {
+        position: absolute;
+        width: 100rem;
+    }
+}
