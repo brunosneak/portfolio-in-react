@@ -1,0 +1,68 @@
+.contact {
+    background-color: #000;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+    .winSkull {
+        max-width: 40rem;
+    }
+    .dlcv {
+        display: flex;
+        flex-direction: column;
+        justify-self: flex-start;
+        h3 {
+            font-size: 5rem;
+            font-weight: 400;
+        }
+        button:first-of-type {
+            border-radius: 3rem;
+            font-size: 2.5rem;
+            margin: 1rem 0;
+            padding: 1.5rem 0;
+            max-width: 32rem;
+            border: 2px solid #fff;
+            color: #fff;
+            background-color: #000;
+            transition: background-color 1s;
+            outline: none;
+            &:hover {
+                background-color: #6BED8C;
+                color: #000;
+                transition: background-color 1s;
+            }
+        }
+        button:last-of-type {
+            border-radius: 30rem;
+            font-size: 2.5rem;
+            margin: 1rem 0;
+            padding: 1.5rem 0;
+            max-width: 32rem;
+            border: 2px solid #f7b3b1;
+            background-color: #f7b3b1;
+            outline: none;
+        }
+    }
+    .social {
+        display: flex;
+        flex-direction: column;
+        justify-self: flex-start;
+        h3 {
+            font-weight: 400;
+            font-size: 4rem;
+        }
+        li {
+            display: flex;
+            align-items: center;
+            margin: 1rem 0;
+            img {
+                width: 6rem;
+                height: 6rem;
+                margin-right: 3rem;
+            }
+            p {
+                font-size: 3rem;
+            }
+        }
+    }
+}

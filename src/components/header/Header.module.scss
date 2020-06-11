@@ -1,8 +1,8 @@
 .container {
     grid-area: header;
-    grid-template-columns: 100px auto 100px;
+    grid-template-columns: 10rem auto 10rem;
     z-index: 1;
-    grid-template-rows: 100px;
+    grid-template-rows: 10rem;
     display: grid;
     place-items: center;
     width: 100%;

@@ -3,12 +3,13 @@
     background-color: #000000;
     border: 0.2rem solid #fff;
     border-radius: 5rem;
-    cursor: pointer;
     display: flex;
     flex-direction: column;
     height: 6rem;
     opacity: 0.7;
     width: 6rem;
+    transform: translate(-50%, -50%);
+    position: fixed;
     span{
         background-color: #fff;
         border-radius: 1rem;
