@@ -9,113 +9,113 @@
     ". start ."
     ". box .";
     place-items: center;
-}
-
-.bgMain, .bg1, .bg2, .bg3, .bg4, .bg5, .bg6  {
-    background-size: cover;
-    background-position: center;
-    bottom: 0;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-}
-
-.bgMain {
-    background-image: url(../../assets/imgAccueil/bgMain.svg);
-}
-
-.bg1 {
-    background-image: url(../../assets/imgAccueil/bg1.svg);
-}
-
-.bg2 {
-    background-image: url(../../assets/imgAccueil/bg2.svg);
-}
-
-.bg3 {
-    background-image: url(../../assets/imgAccueil/bg3.svg);
-}
-
-.bg4 {
-    background-image: url(../../assets/imgAccueil/bg4.svg);
-}
-
-.bg5 {
-    background-image: url(../../assets/imgAccueil/bg5.svg);
-}
-
-.bg6 {
-    background-image: url(../../assets/imgAccueil/bg6.svg);
-}
-
-.start {
-    background-color: #000000;
-    border: 0.2rem solid #fff;
-    border-radius: 10rem;
-    color: #fff;
-    font-size: 3.5rem;
-    grid-area: start;
-    height: 14rem;
-    opacity: 0.7;
-    text-decoration: none;
-    width: 14rem;
-    outline: none;
-    cursor: pointer;
-}
-
-.boiteInfo{
-    grid-area: box;
-    align-items: center;
-    background-color: #333;
-    border-radius: 25px;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    padding: 1rem 0;
-    position: relative;
-    max-height: 15rem;
-    max-width: 50rem;
-    z-index: 1;
-    .flechesDir{
-        width: 40%;
-        .flecheGauche, .flecheDroite{
-            height: 50px;
-        }
-        .flecheHautBas{
-            height: 100px;
-        }
-    }
-    p{
-        width: 40%;
-        span{
-            text-decoration: underline;
-        }
-    }
-    .croix{
-        height: 20px;
+    
+    .bgMain, .bg1, .bg2, .bg3, .bg4, .bg5, .bg6  {
+        background-size: cover;
+        background-position: center;
+        bottom: 0;
+        left: 0;
         position: absolute;
-        top: 12px;
-        right: 12px;
-        &:hover{
-            cursor: pointer;
+        right: 0;
+        top: 0;
+    }
+
+    .bgMain {
+        background-image: url(../../assets/imgAccueil/bgMain.svg);
+    }
+
+    .bg1 {
+        background-image: url(../../assets/imgAccueil/bg1.svg);
+    }
+
+    .bg2 {
+        background-image: url(../../assets/imgAccueil/bg2.svg);
+    }
+
+    .bg3 {
+        background-image: url(../../assets/imgAccueil/bg3.svg);
+    }
+
+    .bg4 {
+        background-image: url(../../assets/imgAccueil/bg4.svg);
+    }
+
+    .bg5 {
+        background-image: url(../../assets/imgAccueil/bg5.svg);
+    }
+
+    .bg6 {
+        background-image: url(../../assets/imgAccueil/bg6.svg);
+    }
+
+    .start {
+        background-color: #000000;
+        border: 0.2rem solid #fff;
+        border-radius: 10rem;
+        color: #fff;
+        font-size: 3.5rem;
+        grid-area: start;
+        height: 14rem;
+        opacity: 0.7;
+        text-decoration: none;
+        width: 14rem;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .boiteInfo{
+        grid-area: box;
+        align-items: center;
+        background-color: #333;
+        border-radius: 25px;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        padding: 1rem 0;
+        position: relative;
+        max-height: 15rem;
+        max-width: 50rem;
+        z-index: 1;
+        .flechesDir{
+            width: 40%;
+            .flecheGauche, .flecheDroite{
+                height: 50px;
+            }
+            .flecheHautBas{
+                height: 100px;
+            }
+        }
+        p{
+            width: 40%;
+            span{
+                text-decoration: underline;
+            }
+        }
+        .croix{
+            height: 20px;
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            &:hover{
+                cursor: pointer;
+            }
         }
     }
-}
 
-.masquePerso{
-    grid-area: perso;
-    height: 179px;
-    overflow: hidden;
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 135px;
-    .perso{
-        height: 296px;
-        left: -33px;
+    .masquePerso{
+        grid-area: perso;
+        height: 179px;
+        overflow: hidden;
         position: absolute;
-        top: -54px;
-        width: 2506px;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        width: 135px;
+        .perso{
+            height: 296px;
+            left: -33px;
+            position: absolute;
+            top: -54px;
+            width: 2506px;
+        }
     }
 }

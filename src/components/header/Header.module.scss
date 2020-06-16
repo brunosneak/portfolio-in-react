@@ -1,11 +1,10 @@
 .container {
     grid-area: header;
     grid-template-columns: 10rem auto 10rem;
-    z-index: 1;
+    z-index: 5;
     grid-template-rows: 10rem;
     display: grid;
     place-items: center;
     width: 100%;
     height: 100%;
-
 }

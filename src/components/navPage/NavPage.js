@@ -15,8 +15,8 @@ const NavPage = () => {
             </div>
             <Router>
                 <ul className={ Style.nav}>
-                    <li><Link to="/cvPage" refresh="true">Mon CV</Link></li>
-                    <li>Contactez-moi</li>
+                    <li><Link to="/cvPage">Mon CV</Link></li>
+                    <li><Link to="/contactPage">Contactez-moi</Link></li>
                     <li>Commencer la partie</li>
                     <li>Tableau des scores</li>                
                 </ul>
