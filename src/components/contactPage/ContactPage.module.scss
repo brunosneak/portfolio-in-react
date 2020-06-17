@@ -19,6 +19,78 @@
         grid-row-start: 1;
         grid-row-end: 3;
         align-self: end;
+        display: flex;
+        .contact {
+            display: grid;
+            grid-template-rows: 1fr 1fr 3fr;
+            padding: 10rem 0 0 10rem;
+            width: 50%;
+            z-index: 10;
+            font-size: 2rem;
+            h2 {
+                font-size: 5rem;
+                margin-top: 0;
+            }
+            .coord {
+                p, a {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 2rem;
+                }
+            }
+            .social {
+                a {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 2rem;
+                }
+            }
+            img {
+                height: 4rem;
+                margin-right: 1rem;
+                width: 4rem;
+            }
+        }
+        .myForm {
+            align-items: center;
+            display: flex;
+            width: 50%;
+            z-index: 10;
+            form {
+                display: flex;
+                flex-direction: column;
+                width: 50%;
+                input, textarea {
+                    background-color: #353535;
+                    outline: none;
+                    border: none;
+                    resize: none;
+                    border-radius: 0.5rem;
+                    padding: 1rem;
+                    color: #fff;
+                }
+                label {
+                    margin-top: 1.5rem;
+                    margin-bottom: 0.5rem;
+                }
+                input {
+                    height: 3rem;
+                }
+                textarea {
+                    height: 20rem;
+                }
+                button {
+                    align-self: flex-end;
+                    border-radius: 30rem;
+                    font-size: 1.5rem;
+                    margin: 1rem 0;
+                    padding: 1.5rem 5rem;
+                    border: 2px solid #f7b3b1;
+                    background-color: #f7b3b1;
+                    outline: none;
+                }
+            }
+        }
     }
     .bg1 {
         background-image: url("../../assets/imgContact/bg1.svg");
@@ -30,7 +102,6 @@
         right: 0;
         top: 0;
     }
-
     .bg2 {
         background-image: url("../../assets/imgContact/bg2.svg");
         background-size: cover;

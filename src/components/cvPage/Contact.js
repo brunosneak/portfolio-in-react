@@ -1,5 +1,6 @@
 import React from "react";
 import Style from "./Contact.module.scss";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
 const Contact = () => {
     return (
@@ -8,7 +9,9 @@ const Contact = () => {
             <section className={ Style.dlcv }>
                 <h3>Alors si on <br/> travaillait ensemble !</h3>
                 <button type="button">Télécharger mon cv.pdf</button>
-                <button type="button">Contactez-moi</button>
+                <Router>
+                    <Link to="/contactPage"><button type="button">Contactez-moi</button></Link>
+                </Router>
             </section>
             <section className={ Style.social }>
                 <h3>Vous pouvez <br/> aussi me suivre</h3>
