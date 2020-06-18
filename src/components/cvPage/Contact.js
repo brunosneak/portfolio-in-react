@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 const Contact = () => {
     return (
         <section className={ Style.contact }>
-            <img className={ Style.winSkull } alt="window and skulls" src={require("../../assets/imgCv/illustration.svg")}/>
+            <img className={ Style.winSkull } alt="window and skulls" src={require("../../assets/img/illustration.svg")}/>
             <section className={ Style.dlcv }>
                 <h3>Alors si on <br/> travaillait ensemble !</h3>
                 <button type="button">Télécharger mon cv.pdf</button>
@@ -18,11 +18,11 @@ const Contact = () => {
                 <nav>
                     <ul>
                         <li>
-                            <img alt="github" src={require("../../assets/imgContact/github.svg")}/>
+                            <img alt="github" src={require("../../assets/img/github.svg")}/>
                             <p>github.com/brunosneak</p>
                         </li>
                         <li>
-                            <img alt="linkedin" src={require("../../assets/imgContact/linkedin.svg")}/>
+                            <img alt="linkedin" src={require("../../assets/img/linkedin.svg")}/>
                             <p>linkedin.com/in/bruno-neak</p>
                         </li>
                     </ul>

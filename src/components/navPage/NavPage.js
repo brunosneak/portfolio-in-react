@@ -11,7 +11,7 @@ const NavPage = () => {
             <LeafBlock/>
             <div className={ Style.platform }/>
             <div className={ Style.maskQuestion }>
-                <img alt="personnage en pause" src={require("../../assets/imgJeu/spritePersoPause.svg")} className={ Style.question }/>
+                <img alt="personnage en pause" src={require("../../assets/img/spritePersoPause.svg")} className={ Style.question }/>
             </div>
             <Router>
                 <ul className={ Style.nav}>
@@ -24,12 +24,12 @@ const NavPage = () => {
             <ul className={ Style.social }>
                 <li>
                     <a href="https://github.com/brunosneak" target="_blank" rel="noopener noreferrer">
-                        <img src={require("../../assets/imgAccueil/iconeGit.svg")} alt="github" className={ Style.github }/>
+                        <img src={require("../../assets/img/iconeGit.svg")} alt="github" className={ Style.github }/>
                     </a>
                 </li>
                 <li>
                     <a href="https://www.linkedin.com/in/bruno-neak/" target="_blank" rel="noopener noreferrer">
-                        <img src={require("../../assets/imgAccueil/iconeLinkedin.svg")} alt="linkedin" className={ Style.linkedin }/>
+                        <img src={require("../../assets/img/iconeLinkedin.svg")} alt="linkedin" className={ Style.linkedin }/>
                     </a>
                 </li>
             </ul>

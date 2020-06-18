@@ -13,21 +13,21 @@ const ContactPage = () => {
                     <h2>CONTACT</h2>
                     <section className={ Style.coord }>
                         <p>
-                            <img alt="localisation" src={require("../../assets/imgContact/map.svg")}/>
+                            <img alt="localisation" src={require("../../assets/img/map.svg")}/>
                             Paris, France
                         </p>
                         <a href="tel:+33650381812">
-                            <img alt="numero de telephone" src={require("../../assets/imgContact/mobile.svg")}/>
+                            <img alt="numero de telephone" src={require("../../assets/img/mobile.svg")}/>
                             06 50 38 18 12
                         </a>
                     </section>
                     <section className={ Style.social }>
                         <a href="https://github.com/brunosneak" target="_blank" rel="noopener noreferrer">
-                            <img alt="github" src={require("../../assets/imgContact/iconeGit.svg")}/>
+                            <img alt="github" src={require("../../assets/img/iconeGit.svg")}/>
                             github.com/brunosneak
                         </a>
                         <a href="https://www.linkedin.com/in/bruno-neak/" target="_blank" rel="noopener noreferrer">
-                            <img alt="linkedin" src={require("../../assets/imgContact/iconeLinkedin.svg")}/>
+                            <img alt="linkedin" src={require("../../assets/img/iconeLinkedin.svg")}/>
                             linkedin.com/in/bruno-neak
                         </a>
                     </section>

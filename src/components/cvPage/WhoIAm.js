@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../header/Header";
 import LeafBlock from "../header/LeafBlock";
 import Style from "./WhoIAm.module.scss";
-import maPhoto from "../../assets/imgCv/photoId.png";
+import maPhoto from "../../assets/img/photoId.png";
 
 const WhoIAm = () => {
     return (
@@ -33,34 +33,34 @@ const WhoIAm = () => {
             <section className={ Style.technoIcons }>
                 <ul>
                     <li>
-                        <img alt="html" src={require("../../assets/imgCv/html5.svg")} className={ Style.sizeIcon }/>
+                        <img alt="html" src={require("../../assets/img/html5.svg")} className={ Style.sizeIcon }/>
                     </li>
                     <li>
-                        <img alt="css" src={require("../../assets/imgCv/css.svg")} className={ Style.sizeIcon }/>
+                        <img alt="css" src={require("../../assets/img/css.svg")} className={ Style.sizeIcon }/>
                     </li>
                     <li>
-                        <img alt="sass" src={require("../../assets/imgCv/sass.svg")} className={ Style.sizeIcon }/>
+                        <img alt="sass" src={require("../../assets/img/sass.svg")} className={ Style.sizeIcon }/>
                     </li>
                     <li>
-                        <img alt="js" src={require("../../assets/imgCv/js.svg")} className={ Style.sizeIcon }/>
+                        <img alt="js" src={require("../../assets/img/js.svg")} className={ Style.sizeIcon }/>
                     </li>
                     <li>
-                        <img alt="jquery" src={require("../../assets/imgCv/react.svg")} className={ Style.sizeIcon }/>
+                        <img alt="jquery" src={require("../../assets/img/react.svg")} className={ Style.sizeIcon }/>
                     </li>
                     <li>
-                        <img alt="angular" src={require("../../assets/imgCv/formik.svg")} className={ Style.sizeIcon }/>
+                        <img alt="angular" src={require("../../assets/img/formik.svg")} className={ Style.sizeIcon }/>
                     </li>
                     <li>
-                        <img alt="node" src={require("../../assets/imgCv/babel.svg")} className={ Style.sizeIcon }/>
+                        <img alt="node" src={require("../../assets/img/babel.svg")} className={ Style.sizeIcon }/>
                     </li>
                     <li>
-                        <img alt="git" src={require("../../assets/imgCv/github.svg")} className={ Style.sizeIcon }/>
+                        <img alt="git" src={require("../../assets/img/github.svg")} className={ Style.sizeIcon }/>
                     </li>
                     <li>
-                        <img alt="mongo" src={require("../../assets/imgCv/webpack.svg")} className={ Style.sizeIcon }/>
+                        <img alt="mongo" src={require("../../assets/img/webpack.svg")} className={ Style.sizeIcon }/>
                     </li>
                     <li>
-                        <img alt="mongo" src={require("../../assets/imgCv/bootstrap.svg")} className={ Style.sizeIcon }/>
+                        <img alt="mongo" src={require("../../assets/img/bootstrap.svg")} className={ Style.sizeIcon }/>
                     </li>
                 </ul>
             </section>

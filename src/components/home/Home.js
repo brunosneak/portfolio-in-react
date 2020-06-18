@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import Header from "../header/Header";
 import Style from "./Home.module.scss";
-import croix from "../../assets/imgAccueil/croix.svg";
-import flecheDroite from "../../assets/imgAccueil/flecheDroite.svg";
-import flecheGauche from "../../assets/imgAccueil/flecheGauche.svg";
-import flecheHautBas from "../../assets/imgAccueil/flecheHautBas.svg";
-import perso from "../../assets/imgAccueil/sautPersoVide.svg";
+import croix from "../../assets/img/croix.svg";
+import flecheDroite from "../../assets/img/flecheDroite.svg";
+import flecheGauche from "../../assets/img/flecheGauche.svg";
+import flecheHautBas from "../../assets/img/flecheHautBas.svg";
+import perso from "../../assets/img/sautPersoVide.svg";
 
 class Home extends Component {
 
