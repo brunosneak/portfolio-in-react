@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 import Header from "../header/Header";
 import Style from "./Home.module.scss";
-import croix from "../../assets/img/croix.svg";
-import flecheDroite from "../../assets/img/flecheDroite.svg";
-import flecheGauche from "../../assets/img/flecheGauche.svg";
-import flecheHautBas from "../../assets/img/flecheHautBas.svg";
-import perso from "../../assets/img/sautPersoVide.svg";
 
 class Home extends Component {
 
@@ -47,21 +42,21 @@ class Home extends Component {
                 </section>
 
                 <div className={ Style.masquePerso }>
-                    <img style={ this.state } className={ Style.perso } src={ perso } alt="Personnage saute dans le vide"/>
+                    <img style={ this.state } className={ Style.perso } src={require("../../assets/img/sautPersoVide.svg")} alt="Personnage saute dans le vide"/>
                 </div>
 
                 <button type="button" onClick={ this.jump } className={ Style.start }>START</button>
 
                 <section className={ Style.boiteInfo }>
                     <div className={ Style.flechesDir }>
-                        <img className={ Style.flecheGauche } src={ flecheGauche } alt="flèche directionnelle gauche"/>
-                        <img className={ Style.flecheHautBas } src={ flecheHautBas } alt="flèche directionnelle haut et bas"/>
-                        <img className={ Style.flecheDroite } src={ flecheDroite } alt="flèche directionnelle droite"/>
+                        <img className={ Style.flecheGauche } src={require("../../assets/img/flecheGauche.svg")} alt="flèche directionnelle gauche"/>
+                        <img className={ Style.flecheHautBas } src={require("../../assets/img/flecheHautBas.svg")} alt="flèche directionnelle haut et bas"/>
+                        <img className={ Style.flecheDroite } src={require("../../assets/img/flecheDroite.svg")} alt="flèche directionnelle droite"/>
                     </div>
                     <p><span>But du jeu</span> : Récupérer les pièces pour gagner des points en utilisant
                         les flèches directionnelles de votre clavier pour vous déplacer.<br/> Atteindre 30.000 points.
                     </p>
-                    <img className={ Style.croix } onClick={ this.disapear } src={ croix } alt="croix"/>
+                    <img className={ Style.croix } onClick={ this.disapear } src={require("../../assets/img/croix.svg")} alt="croix"/>
                 </section>
             </div>
         )

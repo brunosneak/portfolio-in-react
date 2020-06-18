@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../header/Header";
 import Style from "./NavPage.module.scss";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import LeafBlock from "../header/LeafBlock";
 
 const NavPage = () => {
@@ -13,14 +13,12 @@ const NavPage = () => {
             <div className={ Style.maskQuestion }>
                 <img alt="personnage en pause" src={require("../../assets/img/spritePersoPause.svg")} className={ Style.question }/>
             </div>
-            <Router>
-                <ul className={ Style.nav}>
-                    <li><Link to="/cvPage">Mon CV</Link></li>
-                    <li><Link to="/contactPage">Contactez-moi</Link></li>
-                    <li>Commencer la partie</li>
-                    <li>Tableau des scores</li>                
-                </ul>
-            </Router>
+            <ul className={ Style.nav}>
+                <li><Link to="/cvPage">Mon CV</Link></li>
+                <li><Link to="/contactPage">Contactez-moi</Link></li>
+                <li>Commencer la partie</li>
+                <li>Tableau des scores</li>                
+            </ul>
             <ul className={ Style.social }>
                 <li>
                     <a href="https://github.com/brunosneak" target="_blank" rel="noopener noreferrer">

@@ -36,11 +36,14 @@
                     display: flex;
                     align-items: center;
                     margin-bottom: 2rem;
+                    width: max-content;
+
                 }
             }
             .social {
                 a {
                     display: flex;
+                    width: max-content;
                     align-items: center;
                     margin-bottom: 2rem;
                 }
