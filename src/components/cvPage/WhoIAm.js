@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "../header/Header";
-import LeafBlock from "../header/LeafBlock";
 import Style from "./WhoIAm.module.scss";
 import maPhoto from "../../assets/img/photoId.png";
 
@@ -8,7 +7,6 @@ const WhoIAm = () => {
     return (
         <section className={ Style.whoIAm }>
             <Header/>
-            <LeafBlock/>
             <section className={ Style.profile }>
                 <div className={Style.wrapperPhoto }>
                     <img alt="neak bruno" src={ maPhoto } className={ Style.photo }/>

@@ -1,13 +1,11 @@
 import React from "react";
 import Header from "../header/Header";
-import LeafBlock from "../header/LeafBlock";
 import Style from "./ContactPage.module.scss";
 
 const ContactPage = () => {
     return (
         <div className={ Style.container }>
             <Header/>
-            <LeafBlock/>
             <div className={ Style.bgForm }>
                 <section className={ Style.contact }>
                     <h2>CONTACT</h2>

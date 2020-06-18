@@ -3,17 +3,17 @@ import Style from "./MenuBurger.module.scss";
 
 class MenuBurger extends Component {
 
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
-            transition1: "transform .5s, width .5s, left .5s",
-            transition2: "opacity .5s",
+            transition1: "",
+            transition2: "",
             left1: 0,
             left3: 0,
-            transform1: "rotate(0)",
-            transform3: "rotate(0)",
-            width: "50%",
-            transformOrigin: "top left",
+            transform1: "",
+            transform3: "",
+            width: "",
+            transformOrigin: "",
             opacity2: 1
         }
     }

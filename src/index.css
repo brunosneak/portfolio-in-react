@@ -12,6 +12,7 @@ body {
   font-size: 1.6rem;
   color: #fff;
   font-family: 'Dosis', sans-serif;
+  overflow: overlay;
 }
 
 p {

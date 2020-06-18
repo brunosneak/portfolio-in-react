@@ -8,9 +8,9 @@ const Contact = () => {
             <img className={ Style.winSkull } alt="window and skulls" src={require("../../assets/img/illustration.svg")}/>
             <section className={ Style.dlcv }>
                 <h3>Alors si on <br/> travaillait ensemble !</h3>
-                <button type="button">Télécharger mon cv.pdf</button>
-                <Link to="/contactPage">
-                    <button type="button">Contactez-moi</button>
+                <button type="button" className={ Style.btnDlcv }>Télécharger mon cv.pdf</button>
+                <Link to="/contactPage" className={ Style.link }>
+                    <button type="button" className={ Style.btnContact }>Contactez-moi</button>
                 </Link>
             </section>
             <section className={ Style.social }>
@@ -18,12 +18,16 @@ const Contact = () => {
                 <nav>
                     <ul>
                         <li>
-                            <img alt="github" src={require("../../assets/img/github.svg")}/>
-                            <p>github.com/brunosneak</p>
+                            <a href="https://github.com/brunosneak" target="_blank" rel="noopener noreferrer">
+                                <img alt="github" src={require("../../assets/img/iconeGit.svg")}/>
+                                <p>github.com/brunosneak</p>
+                            </a>
                         </li>
                         <li>
-                            <img alt="linkedin" src={require("../../assets/img/linkedin.svg")}/>
-                            <p>linkedin.com/in/bruno-neak</p>
+                            <a href="https://linkedin.com/in/bruno-neak" target="_blank" rel="noopener noreferrer">
+                                <img alt="linkedin" src={require("../../assets/img/linkedin.svg")}/>
+                                <p>linkedin.com/in/bruno-neak</p>
+                            </a>
                         </li>
                     </ul>
                 </nav>

@@ -7,4 +7,10 @@
     height: 100%;
     width: 100%;
     z-index: 3;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    margin: 0;
+    font-size: 3rem;
+    padding-bottom: 10rem;
 }

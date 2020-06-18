@@ -3,7 +3,7 @@ import Style from "./LeafBlock.module.scss";
 
 const LeafBlock = () => {
     return (
-        <div className={ Style.bgLeafBlock }></div>
+        <h1 className={ Style.bgLeafBlock }>NEAK BRUNO</h1>
     )
 }
 

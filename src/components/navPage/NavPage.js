@@ -2,13 +2,11 @@ import React from "react";
 import Header from "../header/Header";
 import Style from "./NavPage.module.scss";
 import { Link } from "react-router-dom";
-import LeafBlock from "../header/LeafBlock";
 
 const NavPage = () => {
     return (
         <div className={ Style.container }>
             <Header/>
-            <LeafBlock/>
             <div className={ Style.platform }/>
             <div className={ Style.maskQuestion }>
                 <img alt="personnage en pause" src={require("../../assets/img/spritePersoPause.svg")} className={ Style.question }/>

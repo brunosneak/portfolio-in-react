@@ -1,6 +1,6 @@
 import React from "react";
 import MenuBurger from "./MenuBurger";
-import MyTitle from "./MyTitle";
+import LeafBlock from "./LeafBlock";
 import Style from "./Header.module.scss";
 import { Link } from "react-router-dom";
 
@@ -10,7 +10,7 @@ const Header = () => {
             <Link to="/navPage">
                 <MenuBurger/>
             </Link>
-            <MyTitle/>
+            <LeafBlock/>
         </div>
     )
 }
