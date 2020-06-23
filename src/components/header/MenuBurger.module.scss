@@ -23,4 +23,40 @@
         top: 1.2rem;
         width: 3rem;
     }
+    .span1Forward {
+        transition: transform 0.5s, width 0.5s, left 0.5s;
+        left: 0.5rem;
+        transform: rotate(45deg);
+        width: 55%;
+        transform-origin: top left;
+    }
+    .span1Reverse {
+        transition: transform 0.5s, width 0.5s, left 0.5s;
+        left: 0;
+        transform: rotate(0);
+        width: 50%;
+        transform-origin: top left;
+    }
+    .span2Forward {
+        opacity: 0;
+        transition: opacity .5s;
+    }
+    .span2Reverse {
+        opacity: 1;
+        transition: opacity .5s;
+    }
+    .span3Forward {
+        transition: transform 0.5s, width 0.5s, left 0.5s;
+        left: 0.3rem;
+        transform: rotate(-45deg);
+        width: 55%;
+        transform-origin: top left;
+    }
+    .span3Reverse {
+        transition: transform 0.5s, width 0.5s, left 0.5s;
+        left: 0;
+        transform: rotate(0);
+        width: 50%;
+        transform-origin: top left;
+    }
 }

@@ -1,12 +1,10 @@
 import React from "react";
-import Header from "../header/Header";
 import Style from "./NavPage.module.scss";
 import { Link } from "react-router-dom";
 
 const NavPage = () => {
     return (
         <div className={ Style.container }>
-            <Header/>
             <div className={ Style.platform }/>
             <div className={ Style.maskQuestion }>
                 <img alt="personnage en pause" src={require("../../assets/img/spritePersoPause.svg")} className={ Style.question }/>
@@ -14,7 +12,7 @@ const NavPage = () => {
             <ul className={ Style.nav}>
                 <li><Link to="/cvPage">Mon CV</Link></li>
                 <li><Link to="/contactPage">Contactez-moi</Link></li>
-                <li>Commencer la partie</li>
+                <li><Link to="/gamePage">Commencer la partie</Link></li>
                 <li>Tableau des scores</li>                
             </ul>
             <ul className={ Style.social }>

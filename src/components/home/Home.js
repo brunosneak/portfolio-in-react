@@ -1,36 +1,46 @@
 import React, { Component } from "react";
-import Header from "../header/Header";
 import Style from "./Home.module.scss";
+import { withRouter } from "react-router-dom";
 
 class Home extends Component {
 
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
-            left: "",
-            opacity: ""
+            disabled: false,
         }
+        this.persoRef = React.createRef();
+        this.boxRef = React.createRef();
     }
 
-    disapear = (event) => {
-        event.stopPropagation();
+    animePerso = () => {
+        let idSetInterval;
+        let persoPosition = this.persoRef.current.offsetLeft;
+        idSetInterval = setInterval(() => {
+            persoPosition -= 165;
+            this.persoRef.current.style.left = persoPosition + "px";
+            if(persoPosition <= -2300){
+                clearInterval(idSetInterval);
+                this.props.history.push("/gamePage");
+            };
+        }, 200);
         this.setState({
-            opacity: 0
+            disabled: true
         })
     }
 
-    jump = () => {
-        setInterval(() => {
-            this.setState({
-                left: this.state.left + "-198.7px"
-            })  
-        }, 1000);
+    disapear = () => {
+        this.boxRef.current.style = "opacity: 0; transition: opacity .5s;"
+        if(this.boxRef.current.style.opacity === "0"){
+            setTimeout(() => {
+                this.boxRef.current.style.display = "none";
+            }, 500);
+        }
     }
 
     render(){
         return (
             <div className={ Style.container }>
-                <Header/>
                 <section>
                     <div className={ Style.bgMain }/>
                     <div className={ Style.bg1 }/>
@@ -42,12 +52,12 @@ class Home extends Component {
                 </section>
 
                 <div className={ Style.masquePerso }>
-                    <img style={ this.state } className={ Style.perso } src={require("../../assets/img/sautPersoVide.svg")} alt="Personnage saute dans le vide"/>
+                    <img ref={ this.persoRef } className={ Style.perso } src={require("../../assets/img/sautPersoVide.svg")} alt="Personnage saute dans le vide"/>
                 </div>
 
-                <button type="button" onClick={ this.jump } className={ Style.start }>START</button>
+                <button disabled={ this.state.disabled } type="button" onClick={ this.animePerso } className={ Style.start }>START</button>
 
-                <section className={ Style.boiteInfo }>
+                <section className={ Style.boiteInfo } ref={ this.boxRef } >
                     <div className={ Style.flechesDir }>
                         <img className={ Style.flecheGauche } src={require("../../assets/img/flecheGauche.svg")} alt="flèche directionnelle gauche"/>
                         <img className={ Style.flecheHautBas } src={require("../../assets/img/flecheHautBas.svg")} alt="flèche directionnelle haut et bas"/>
@@ -63,4 +73,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default withRouter(Home);

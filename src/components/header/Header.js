@@ -2,12 +2,16 @@ import React from "react";
 import MenuBurger from "./MenuBurger";
 import LeafBlock from "./LeafBlock";
 import Style from "./Header.module.scss";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
-const Header = () => {
+const Header = (props) => {
+
+    console.log(props);
+
     return (
         <div className={ Style.container }>
-            <Link to="/navPage">
+            <Link to={ props.location.pathname === "/" ? "/navPage" : "/"
+                }>
                 <MenuBurger/>
             </Link>
             <LeafBlock/>
@@ -15,4 +19,4 @@ const Header = () => {
     )
 }
 
-export default Header;
+export default withRouter(Header);
