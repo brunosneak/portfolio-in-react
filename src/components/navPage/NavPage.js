@@ -6,9 +6,6 @@ class NavPage extends Component {
 
     constructor(props){
         super(props);
-        this.state = {
-            style: 0
-        }
         this.persoPauseRef = React.createRef();
     }
     

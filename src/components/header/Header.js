@@ -1,22 +1,32 @@
-import React from "react";
+import React, { Component } from "react";
 import MenuBurger from "./MenuBurger";
 import LeafBlock from "./LeafBlock";
 import Style from "./Header.module.scss";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
-const Header = (props) => {
+class Header extends Component{
 
-    console.log(props);
+    constructor(props){
+        super(props);
+        this.state = {
+            show: false
+        }
+    }
 
-    return (
-        <div className={ Style.container }>
-            <Link to={ props.location.pathname === "/" ? "/navPage" : "/"
-                }>
+    toggle = () => {
+        this.setState({
+            show: !this.state.show
+        })
+    }
+    
+    render(){
+        return (
+            <div className={ Style.container }>
                 <MenuBurger/>
-            </Link>
-            <LeafBlock/>
-        </div>
-    )
+                <LeafBlock/>
+            </div>
+        )
+    }
 }
 
 export default withRouter(Header);

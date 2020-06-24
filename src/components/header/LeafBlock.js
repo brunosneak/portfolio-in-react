@@ -1,10 +1,12 @@
 import React from "react";
 import Style from "./LeafBlock.module.scss";
+import { withRouter } from "react-router-dom";
 
-const LeafBlock = () => {
+const LeafBlock = (props) => {
+
     return (
-        <h1 className={ Style.bgLeafBlock }>NEAK BRUNO</h1>
+        (props.location.pathname === "/gamePage" ? null : <h1 className={ Style.bgLeafBlock }>NEAK BRUNO</h1>)
     )
 }
 
-export default LeafBlock;
+export default withRouter(LeafBlock);

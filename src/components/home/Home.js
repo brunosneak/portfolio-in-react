@@ -19,7 +19,7 @@ class Home extends Component {
         idSetInterval = setInterval(() => {
             persoPosition -= 165;
             this.persoRef.current.style.left = persoPosition + "px";
-            if(persoPosition <= -2300){
+            if(persoPosition <= -2500){
                 clearInterval(idSetInterval);
                 this.props.history.push("/gamePage");
             };
@@ -55,7 +55,11 @@ class Home extends Component {
                     <img ref={ this.persoRef } className={ Style.perso } src={require("../../assets/img/sautPersoVide.svg")} alt="Personnage saute dans le vide"/>
                 </div>
 
-                <button disabled={ this.state.disabled } type="button" onClick={ this.animePerso } className={ Style.start }>START</button>
+                <button disabled={ this.state.disabled } 
+                        type="button" 
+                        onClick={ this.animePerso } 
+                        className={ Style.start }
+                >START</button>
 
                 <section className={ Style.boiteInfo } ref={ this.boxRef } >
                     <div className={ Style.flechesDir }>
