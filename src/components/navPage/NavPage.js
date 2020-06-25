@@ -14,7 +14,9 @@ class NavPage extends Component {
         let persoPause = this.persoPauseRef.current.offsetLeft;
         idSetInterval = setInterval(() => {
             persoPause -= 200;
-            this.persoPauseRef.current.style.left = persoPause + "px";
+            if(this.persoPauseRef && this.persoPauseRef.current){
+                this.persoPauseRef.current.style.left = persoPause + "px";
+            }
             if(persoPause <= -800){
                 clearInterval(idSetInterval);
             };
