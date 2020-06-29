@@ -50,6 +50,29 @@
                 }
             }
         }
+        .fantomeRougeColl, .fantomeVertColl{
+            bottom: 0;
+            height: 66px;
+            left: 45%;
+            position: absolute;
+            width: 73px;
+            z-index: 4;
+            .masqueFantomeRouge, .masqueFantomeVert{
+                height: 150px;
+                left: -22px;
+                overflow: hidden;
+                position: absolute;
+                top: -7px;
+                width: 123px;
+                .fantomeRouge, .fantomeVert{
+                    height: 100%;
+                    position: absolute;
+                }
+            }
+        }
+        .fantomeVertColl{
+            left: 60%;
+        }
     }
 }
 

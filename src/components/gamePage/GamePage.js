@@ -11,6 +11,10 @@ class GamePage extends Component {
         this.fenetreGauche = React.createRef();
         this.fenetreDroite = React.createRef();
         this.fondVert = React.createRef();
+        this.fantomeRougeColl = React.createRef();
+        this.fantomeVertColl = React.createRef();
+        this.fantomeRouge = React.createRef();
+        this.fantomeVert = React.createRef();
     }
 
     componentDidMount(){
@@ -75,6 +79,8 @@ class GamePage extends Component {
             (() => {
                 const fenetreGaucheTop = this.fenetreGauche.current.offsetTop;
                 const fenetreDroiteTop = this.fenetreDroite.current.offsetTop;
+                const fantomeRougeCollTop = this.fantomeRougeColl.current.offsetTop;
+                const fantomeVertCollTop = this.fantomeVertColl.current.offsetTop;
 
                 /* défilement decors */
                 const tops = (top1, top2, px) => {
@@ -84,17 +90,29 @@ class GamePage extends Component {
 
                 tops(fenetreGaucheTop,this.fenetreGauche, 6);
                 tops(fenetreDroiteTop,this.fenetreDroite, 6);
+                tops(fantomeRougeCollTop,this.fantomeRougeColl, 7);
+                tops(fantomeVertCollTop,this.fantomeVertColl, 7);
             })();
 
             /* retour depart des objets en boucle*/
             (() => {
                 const objHeight = {
-                    fenetreGaucheHeight: this.fenetreGauche.current.offsetTop + this.fenetreGauche.current.offsetHeight
+                    fenetreGaucheHeight: this.fenetreGauche.current.offsetTop + this.fenetreGauche.current.offsetHeight,
+                    fantomeRougeCollHeight: this.fantomeRougeColl.current.offsetTop + this.fantomeRougeColl.current.offsetHeight,
+                    fantomeVertCollHeight: this.fantomeVertColl.current.offsetTop + this.fantomeVertColl.current.offsetHeight,
                 }
                 if(this.fondVert.current.offsetTop >= objHeight.fenetreGaucheHeight){
                     this.fenetreGauche.current.style.top = this.fondVert.current.offsetHeight + Math.floor(Math.random()*1000) + "px";
                     this.fenetreDroite.current.style.top = this.fenetreGauche.current.style.top;
                 };
+                const start = (start1, start2) => {
+                    if(this.fondVert.current.offsetTop >= start1){
+                        start2.current.style.top = this.fondVert.current.offsetHeight + Math.floor(Math.random()*1000) + "px";
+                        start2.current.style.left = (Math.floor(Math.random() * (975 - 128 + 1)) + 128) + "px";
+                    };
+                };
+                start(objHeight.fantomeRougeCollHeight, this.fantomeRougeColl);
+                start(objHeight.fantomeVertCollHeight, this.fantomeVertColl);
             })();
 
             /* boucle du sprite */
@@ -135,6 +153,24 @@ class GamePage extends Component {
                                  src={require("../../assets/img/spritePerso.svg")} 
                                  alt="personnage"
                                  ref={ this.joueurRef }/>
+                        </div>
+                    </div>
+                    <div className={ Style.fantomeRougeColl } ref={ this.fantomeRougeColl }>
+                        <div className={ Style.masqueFantomeRouge }>
+                            <img className={ Style.fantomeRouge } 
+                                 src={require("../../assets/img/spriteFantomeRouge.svg")} 
+                                 alt="fantome rouge"
+                                 ref={ this.fantomeRouge }
+                            />
+                        </div>
+                    </div>
+                    <div className={ Style.fantomeVertColl } ref={ this.fantomeVertColl }>
+                        <div className={ Style.masqueFantomeVert }>
+                            <img className={ Style.fantomeVert } 
+                                 src={require("../../assets/img/spriteFantomeVert.svg")} 
+                                 alt="fantome vert"
+                                 ref={ this.fantomeVert }
+                            />
                         </div>
                     </div>
                 </div>
