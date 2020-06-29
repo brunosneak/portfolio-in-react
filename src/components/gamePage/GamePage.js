@@ -29,7 +29,6 @@ class GamePage extends Component {
         let joueurCollOffLeft = joueurCollRef.current.offsetLeft;
         let fantomeRougeLeft = this.fantomeRouge.current.offsetLeft;
         let fantomeVertLeft = this.fantomeVert.current.offsetLeft;
-
         let rafId;
 
         /* mouvement joueur */
@@ -84,16 +83,20 @@ class GamePage extends Component {
         /* Request Animation Frame */
         const animation = () => {
 
+            // rafId = requestAnimationFrame(animation);
+
             /* decors animation */
             (() => {
-                const fenetreGaucheTop = this.fenetreGauche.current.offsetTop;
-                const fenetreDroiteTop = this.fenetreDroite.current.offsetTop;
-                const fantomeRougeCollTop = this.fantomeRougeColl.current.offsetTop;
-                const fantomeVertCollTop = this.fantomeVertColl.current.offsetTop;
-                const boulePiqueCollTop = this.boulePiqueColl.current.offsetTop;
-                const pieceHtml5Top = this.pieceHtml5.current.offsetTop;
-                const pieceCss3Top = this.pieceCss3.current.offsetTop;
-                const pieceJsTop = this.pieceJs.current.offsetTop;
+                const objTop = {
+                    fenetreGaucheTop: this.fenetreGauche.current.offsetTop,
+                    fenetreDroiteTop: this.fenetreDroite.current.offsetTop,
+                    fantomeRougeCollTop: this.fantomeRougeColl.current.offsetTop,
+                    fantomeVertCollTop: this.fantomeVertColl.current.offsetTop,
+                    boulePiqueCollTop: this.boulePiqueColl.current.offsetTop,
+                    pieceHtml5Top: this.pieceHtml5.current.offsetTop,
+                    pieceCss3Top: this.pieceCss3.current.offsetTop,
+                    pieceJsTop: this.pieceJs.current.offsetTop
+                }
 
 
                 /* défilement decors */
@@ -102,14 +105,14 @@ class GamePage extends Component {
                     top2.current.style.top = top1 + "px";
                 }
 
-                tops(fenetreGaucheTop,this.fenetreGauche, 6);
-                tops(fenetreDroiteTop,this.fenetreDroite, 6);
-                tops(fantomeRougeCollTop,this.fantomeRougeColl, 7);
-                tops(fantomeVertCollTop,this.fantomeVertColl, 7);
-                tops(boulePiqueCollTop,this.boulePiqueColl, 6);
-                tops(pieceHtml5Top,this.pieceHtml5, 6);
-                tops(pieceCss3Top,this.pieceCss3, 6);
-                tops(pieceJsTop,this.pieceJs, 6);
+                tops(objTop.fenetreGaucheTop,this.fenetreGauche, 6);
+                tops(objTop.fenetreDroiteTop,this.fenetreDroite, 6);
+                tops(objTop.fantomeRougeCollTop,this.fantomeRougeColl, 7);
+                tops(objTop.fantomeVertCollTop,this.fantomeVertColl, 7);
+                tops(objTop.boulePiqueCollTop,this.boulePiqueColl, 6);
+                tops(objTop.pieceHtml5Top,this.pieceHtml5, 6);
+                tops(objTop.pieceCss3Top,this.pieceCss3, 6);
+                tops(objTop.pieceJsTop,this.pieceJs, 6);
             })();
 
             /* retour depart des objets en boucle*/
@@ -122,16 +125,19 @@ class GamePage extends Component {
                     pieceCss3Height: this.pieceCss3.current.offsetTop + this.pieceCss3.current.offsetHeight,
                     pieceJsHeight: this.pieceJs.current.offsetTop + this.pieceJs.current.offsetHeight
                 }
+
                 if(this.fondVert.current.offsetTop >= objHeight.fenetreGaucheHeight){
                     this.fenetreGauche.current.style.top = this.fondVert.current.offsetHeight + Math.floor(Math.random()*1000) + "px";
                     this.fenetreDroite.current.style.top = this.fenetreGauche.current.style.top;
                 };
+
                 const start = (start1, start2) => {
                     if(this.fondVert.current.offsetTop >= start1){
                         start2.current.style.top = this.fondVert.current.offsetHeight + Math.floor(Math.random()*1000) + "px";
                         start2.current.style.left = (Math.floor(Math.random() * (975 - 128 + 1)) + 128) + "px";
                     };
                 };
+
                 start(objHeight.fantomeRougeCollHeight, this.fantomeRougeColl);
                 start(objHeight.fantomeVertCollHeight, this.fantomeVertColl);
                 start(objHeight.boulePiqueCollHeight, this.boulePiqueColl);
@@ -158,10 +164,37 @@ class GamePage extends Component {
                 this.fantomeVert.current.style.left = fantomeVertLeft + "px";
             })();
 
-            // rafId = requestAnimationFrame(animation);
+            /* detection de collision */
+            (() => {
+                var objCoord = {
+                    coordMasque: this.joueurCollRef.current.getBoundingClientRect(),
+                    coordfantomeRougeColl: this.fantomeRougeColl.current.getBoundingClientRect(),
+                    coordfantomeVertColl: this.fantomeVertColl.current.getBoundingClientRect(),
+                    coordboulePiqueColl: this.boulePiqueColl.current.getBoundingClientRect(),
+                    coordPieceJs: this.pieceJs.current.getBoundingClientRect(),
+                    coordPieceCss3: this.pieceCss3.current.getBoundingClientRect(),
+                    coordPieceHtml5: this.pieceHtml5.current.getBoundingClientRect(),
+                }
+
+                if( (objCoord.coordMasque.left < objCoord.coordfantomeRougeColl.left + objCoord.coordfantomeRougeColl.width &&
+                    objCoord.coordMasque.left + objCoord.coordMasque.width > objCoord.coordfantomeRougeColl.left &&
+                    objCoord.coordMasque.top < objCoord.coordfantomeRougeColl.top + objCoord.coordfantomeRougeColl.height &&
+                    objCoord.coordMasque.height + objCoord.coordMasque.top > objCoord.coordfantomeRougeColl.top) || 
+        
+                    (objCoord.coordMasque.left < objCoord.coordfantomeVertColl.left + objCoord.coordfantomeVertColl.width &&
+                    objCoord.coordMasque.left + objCoord.coordMasque.width > objCoord.coordfantomeVertColl.left &&
+                    objCoord.coordMasque.top < objCoord.coordfantomeVertColl.top + objCoord.coordfantomeVertColl.height &&
+                    objCoord.coordMasque.height + objCoord.coordMasque.top > objCoord.coordfantomeVertColl.top) || 
+        
+                    (objCoord.coordMasque.left < objCoord.coordboulePiqueColl.left + objCoord.coordboulePiqueColl.width &&
+                    objCoord.coordMasque.left + objCoord.coordMasque.width > objCoord.coordboulePiqueColl.left &&
+                    objCoord.coordMasque.top < objCoord.coordboulePiqueColl.top + objCoord.coordboulePiqueColl.height &&
+                    objCoord.coordMasque.height + objCoord.coordMasque.top > objCoord.coordboulePiqueColl.top)){
+                        cancelAnimationFrame(rafId);
+                };
+            })();
         }
         animation();
-
     }
 
     render(){
