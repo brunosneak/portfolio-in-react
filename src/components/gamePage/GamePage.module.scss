@@ -73,6 +73,33 @@
         .fantomeVertColl{
             left: 60%;
         }
+        .boulePiqueColl{
+            bottom: 0;
+            height: 49px;
+            left: 75%;
+            position: absolute;
+            width: 51px;
+            .boulePique{
+                height: 100px;
+                left: -28px;
+                position: absolute;
+                top: -26px;
+            }
+        }
+        .pieceJs, .pieceCss3, .pieceHtml5{
+            bottom: 0px;
+            height: 100px;
+            position: absolute;
+        }
+        .pieceJs{
+            left: 20%;
+        }
+        .pieceCss3{
+            left: 30%;
+        }
+        .pieceHtml5{
+            left: 60%;
+        }
     }
 }
 

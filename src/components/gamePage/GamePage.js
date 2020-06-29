@@ -15,6 +15,10 @@ class GamePage extends Component {
         this.fantomeVertColl = React.createRef();
         this.fantomeRouge = React.createRef();
         this.fantomeVert = React.createRef();
+        this.boulePiqueColl = React.createRef();
+        this.pieceJs = React.createRef();
+        this.pieceCss3 = React.createRef();
+        this.pieceHtml5 = React.createRef();
     }
 
     componentDidMount(){
@@ -23,6 +27,9 @@ class GamePage extends Component {
         const joueurCollRef = this.joueurCollRef;
         let joueurOffLeft = joueurRef.current.offsetLeft;
         let joueurCollOffLeft = joueurCollRef.current.offsetLeft;
+        let fantomeRougeLeft = this.fantomeRouge.current.offsetLeft;
+        let fantomeVertLeft = this.fantomeVert.current.offsetLeft;
+
         let rafId;
 
         /* mouvement joueur */
@@ -70,6 +77,8 @@ class GamePage extends Component {
         /* temps défilement joueur */
         setInterval(function(){
             joueurOffLeft -= 120;
+            fantomeRougeLeft -= 120;
+            fantomeVertLeft -= 120;
         }, 200);
         
         /* Request Animation Frame */
@@ -81,6 +90,11 @@ class GamePage extends Component {
                 const fenetreDroiteTop = this.fenetreDroite.current.offsetTop;
                 const fantomeRougeCollTop = this.fantomeRougeColl.current.offsetTop;
                 const fantomeVertCollTop = this.fantomeVertColl.current.offsetTop;
+                const boulePiqueCollTop = this.boulePiqueColl.current.offsetTop;
+                const pieceHtml5Top = this.pieceHtml5.current.offsetTop;
+                const pieceCss3Top = this.pieceCss3.current.offsetTop;
+                const pieceJsTop = this.pieceJs.current.offsetTop;
+
 
                 /* défilement decors */
                 const tops = (top1, top2, px) => {
@@ -92,6 +106,10 @@ class GamePage extends Component {
                 tops(fenetreDroiteTop,this.fenetreDroite, 6);
                 tops(fantomeRougeCollTop,this.fantomeRougeColl, 7);
                 tops(fantomeVertCollTop,this.fantomeVertColl, 7);
+                tops(boulePiqueCollTop,this.boulePiqueColl, 6);
+                tops(pieceHtml5Top,this.pieceHtml5, 6);
+                tops(pieceCss3Top,this.pieceCss3, 6);
+                tops(pieceJsTop,this.pieceJs, 6);
             })();
 
             /* retour depart des objets en boucle*/
@@ -100,6 +118,9 @@ class GamePage extends Component {
                     fenetreGaucheHeight: this.fenetreGauche.current.offsetTop + this.fenetreGauche.current.offsetHeight,
                     fantomeRougeCollHeight: this.fantomeRougeColl.current.offsetTop + this.fantomeRougeColl.current.offsetHeight,
                     fantomeVertCollHeight: this.fantomeVertColl.current.offsetTop + this.fantomeVertColl.current.offsetHeight,
+                    boulePiqueCollHeight: this.boulePiqueColl.current.offsetTop + this.boulePiqueColl.current.offsetHeight,        pieceHtml5Height: this.pieceHtml5.current.offsetTop + this.pieceHtml5.current.offsetHeight,
+                    pieceCss3Height: this.pieceCss3.current.offsetTop + this.pieceCss3.current.offsetHeight,
+                    pieceJsHeight: this.pieceJs.current.offsetTop + this.pieceJs.current.offsetHeight
                 }
                 if(this.fondVert.current.offsetTop >= objHeight.fenetreGaucheHeight){
                     this.fenetreGauche.current.style.top = this.fondVert.current.offsetHeight + Math.floor(Math.random()*1000) + "px";
@@ -113,6 +134,10 @@ class GamePage extends Component {
                 };
                 start(objHeight.fantomeRougeCollHeight, this.fantomeRougeColl);
                 start(objHeight.fantomeVertCollHeight, this.fantomeVertColl);
+                start(objHeight.boulePiqueCollHeight, this.boulePiqueColl);
+                start(objHeight.pieceHtml5Height, this.pieceHtml5);
+                start(objHeight.pieceCss3Height, this.pieceCss3);
+                start(objHeight.pieceJsHeight, this.pieceJs);
             })();
 
             /* boucle du sprite */
@@ -121,6 +146,16 @@ class GamePage extends Component {
                     joueurOffLeft = -10;
                 };
                 joueurRef.current.style.left = joueurOffLeft + "px";
+
+                if(fantomeRougeLeft < -840){
+                    fantomeRougeLeft = 0;
+                };
+                this.fantomeRouge.current.style.left = fantomeRougeLeft + "px";
+
+                if(fantomeVertLeft < -840){
+                    fantomeVertLeft = 0;
+                };
+                this.fantomeVert.current.style.left = fantomeVertLeft + "px";
             })();
 
             // rafId = requestAnimationFrame(animation);
@@ -173,6 +208,27 @@ class GamePage extends Component {
                             />
                         </div>
                     </div>
+                    <div className={ Style.boulePiqueColl } ref={ this.boulePiqueColl }>
+                        <img className={ Style.boulePique } 
+                             src={require("../../assets/img/boulePique.svg")} 
+                             alt="boule avec des piques"
+                        />
+                    </div>
+                    <img className={ Style.pieceJs } 
+                         src={require("../../assets/img/pieceJs.svg")} 
+                         alt="pièce javascript"
+                         ref={ this.pieceJs }
+                    />
+                    <img className={ Style.pieceCss3 } 
+                         src={require("../../assets/img/pieceCss3.svg")} 
+                         alt="pièce css"
+                         ref={ this.pieceCss3 }
+                    />
+                    <img className={ Style.pieceHtml5 } 
+                         src={require("../../assets/img/pieceHtml5.svg")} 
+                         alt="pièce html"
+                         ref={ this.pieceHtml5 }
+                    />
                 </div>
             </div>
         )
