@@ -19,6 +19,9 @@ class GamePage extends Component {
         this.pieceJs = React.createRef();
         this.pieceCss3 = React.createRef();
         this.pieceHtml5 = React.createRef();
+        this.state = {
+            score: 0
+        }
     }
 
     componentDidMount(){
@@ -30,7 +33,7 @@ class GamePage extends Component {
         let fantomeRougeLeft = this.fantomeRouge.current.offsetLeft;
         let fantomeVertLeft = this.fantomeVert.current.offsetLeft;
         let rafId;
-
+        
         /* mouvement joueur */
         document.addEventListener("keydown", function(event){
             const direction = event.keyCode;
@@ -79,13 +82,31 @@ class GamePage extends Component {
             fantomeRougeLeft -= 120;
             fantomeVertLeft -= 120;
         }, 200);
+
+        /* départ des objets */
+        (() => {
+            this.fenetreGauche.current.style.bottom = "-" + Math.floor(Math.random()*1000) - this.fenetreGauche.current.offsetHeight + "px";
+            this.fenetreDroite.current.style.bottom  = this.fenetreGauche.current.style.bottom ;
+
+            const departObjet = (monObjet) => {
+                monObjet.style.bottom = "-" + Math.floor(Math.random()*1000) - monObjet.offsetHeight + "px";
+                monObjet.style.left = (Math.floor(Math.random() * (975 - 128 + 1)) + 128) + "px";
+            };
+
+            departObjet(this.pieceJs.current);
+            departObjet(this.boulePiqueColl.current);
+            departObjet(this.fantomeRougeColl.current);
+            departObjet(this.fantomeVertColl.current);
+            departObjet(this.pieceCss3.current);
+            departObjet(this.pieceHtml5.current);
+        })();
         
         /* Request Animation Frame */
         const animation = () => {
 
-            // rafId = requestAnimationFrame(animation);
-
-            /* decors animation */
+            rafId = requestAnimationFrame(animation);
+            
+            /* objets animés */
             (() => {
                 const objTop = {
                     fenetreGaucheTop: this.fenetreGauche.current.offsetTop,
@@ -99,20 +120,58 @@ class GamePage extends Component {
                 }
 
 
-                /* défilement decors */
-                const tops = (top1, top2, px) => {
+                /* défilement objets vers le haut */
+                const slideUp = (top1, top2, px) => {
                     top1 -= px;
                     top2.current.style.top = top1 + "px";
                 }
 
-                tops(objTop.fenetreGaucheTop,this.fenetreGauche, 6);
-                tops(objTop.fenetreDroiteTop,this.fenetreDroite, 6);
-                tops(objTop.fantomeRougeCollTop,this.fantomeRougeColl, 7);
-                tops(objTop.fantomeVertCollTop,this.fantomeVertColl, 7);
-                tops(objTop.boulePiqueCollTop,this.boulePiqueColl, 6);
-                tops(objTop.pieceHtml5Top,this.pieceHtml5, 6);
-                tops(objTop.pieceCss3Top,this.pieceCss3, 6);
-                tops(objTop.pieceJsTop,this.pieceJs, 6);
+                slideUp(objTop.fenetreGaucheTop,this.fenetreGauche, 6);
+                slideUp(objTop.fenetreDroiteTop,this.fenetreDroite, 6);
+                slideUp(objTop.fantomeRougeCollTop,this.fantomeRougeColl, 7);
+                slideUp(objTop.fantomeVertCollTop,this.fantomeVertColl, 8);
+                slideUp(objTop.boulePiqueCollTop,this.boulePiqueColl, 6);
+                slideUp(objTop.pieceHtml5Top,this.pieceHtml5, 6);
+                slideUp(objTop.pieceCss3Top,this.pieceCss3, 6);
+                slideUp(objTop.pieceJsTop,this.pieceJs, 6);
+
+                /* niveau et vitesse de jeu */
+                const niveau = (scoreAtteint, vitesse, vitesseFantome) => {
+                    if( this.state.score >= scoreAtteint ){
+                        objTop.fenetreGaucheTop -= vitesse;
+                        objTop.fenetreDroiteTop -= vitesse;
+                        objTop.pieceJsTop -= vitesse;
+                        objTop.boulePiqueCollTop -= vitesse;
+                        objTop.fantomeRougeCollTop -= vitesseFantome;
+                        objTop.fantomeVertCollTop -= vitesseFantome;
+                        objTop.pieceCss3Top -= vitesse;
+                        objTop.pieceHtml5Top -= vitesse;
+                        this.fenetreGauche.current.style.top = objTop.fenetreGaucheTop + "px";
+                        this.fenetreDroite.current.style.top = objTop.fenetreDroiteTop + "px";
+                        this.pieceJs.current.style.top = objTop.pieceJsTop + "px";
+                        this.boulePiqueColl.current.style.top = objTop.boulePiqueCollTop + "px";
+                        this.fantomeRougeColl.current.style.top = objTop.fantomeRougeCollTop + "px";
+                        this.fantomeVertColl.current.style.top = objTop.fantomeVertCollTop + "px";
+                        this.pieceCss3.current.style.top = objTop.pieceCss3Top + "px";
+                        this.pieceHtml5.current.style.top = objTop.pieceHtml5Top + "px";
+                    };
+                };
+                
+                if( this.state.score >= 5000 ){
+                    niveau(5000, 8, 9);
+                    // mouvementFantomeVert();
+                    // monTop(objTop.fantomeVertCollTop, elements.fantomeVertColl, 1);
+                    // positionDeDepartObjet(elements.fantomeVertColl);
+                };
+            
+                if( this.state.score >= 10000 ){
+                    niveau(10000, 2, 2);
+                };
+            
+                if( this.state.score >= 15000 ){
+                    niveau(15000, 2, 2);
+                }; 
+
             })();
 
             /* retour depart des objets en boucle*/
@@ -166,6 +225,8 @@ class GamePage extends Component {
 
             /* detection de collision */
             (() => {
+
+                /* detection obstacles */
                 var objCoord = {
                     coordMasque: this.joueurCollRef.current.getBoundingClientRect(),
                     coordfantomeRougeColl: this.fantomeRougeColl.current.getBoundingClientRect(),
@@ -192,6 +253,25 @@ class GamePage extends Component {
                     objCoord.coordMasque.height + objCoord.coordMasque.top > objCoord.coordboulePiqueColl.top)){
                         cancelAnimationFrame(rafId);
                 };
+
+                /* detection pièces*/
+                const pieceCollision = (obj1, obj2, points) => {
+                    if(objCoord.coordMasque.left < obj1.left + obj1.width &&
+                        objCoord.coordMasque.left + objCoord.coordMasque.width > obj1.left &&
+                        objCoord.coordMasque.top < obj1.top + obj1.height &&
+                        objCoord.coordMasque.height + objCoord.coordMasque.top > obj1.top){
+                            obj2.style.top = this.fondVert.current.offsetHeight + Math.floor(Math.random()*1000) + "px";
+                            obj2.style.left = (Math.floor(Math.random() * (975 - 128 + 1)) + 128) + "px";
+                            this.setState({
+                                score: this.state.score + points
+                            });
+                        };
+                };
+        
+                pieceCollision(objCoord.coordPieceJs, this.pieceJs.current, 1000);
+                pieceCollision(objCoord.coordPieceCss3, this.pieceCss3.current, 500);
+                pieceCollision(objCoord.coordPieceHtml5, this.pieceHtml5.current, 250);
+
             })();
         }
         animation();
@@ -262,6 +342,11 @@ class GamePage extends Component {
                          alt="pièce html"
                          ref={ this.pieceHtml5 }
                     />
+                    
+                </div>
+                <div className={ Style.scoreDuJeu }>
+                    <p>score</p>
+                    <span>{ this.state.score }</span>
                 </div>
             </div>
         )
