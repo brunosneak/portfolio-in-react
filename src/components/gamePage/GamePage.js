@@ -20,7 +20,8 @@ class GamePage extends Component {
         this.pieceCss3 = React.createRef();
         this.pieceHtml5 = React.createRef();
         this.state = {
-            score: 0
+            score: 0,
+            compteur: 3
         }
     }
 
@@ -33,48 +34,6 @@ class GamePage extends Component {
         let fantomeRougeLeft = this.fantomeRouge.current.offsetLeft;
         let fantomeVertLeft = this.fantomeVert.current.offsetLeft;
         let rafId;
-        
-        /* mouvement joueur */
-        document.addEventListener("keydown", function(event){
-            const direction = event.keyCode;
-
-            switch(direction){
-                case 37:
-                    /* direction gauche */
-                    joueurCollOffLeft -= 15;
-                    joueurCollRef.current.style.left = joueurCollOffLeft + "px";
-                    joueurRef.current.style.top = "-13px";
-
-                    /* délimitation du joueur */
-                    if(joueurCollOffLeft <= 128){
-                        joueurCollOffLeft = 128;
-                        joueurCollRef.current.style.left = "128px";
-                    };
-                    if(joueurCollOffLeft >= 1000){
-                        joueurCollOffLeft = 1000;
-                        joueurCollRef.current.style.left = "1000px";
-                    };
-                    break;
-                case 39:
-                    /* direction droite */
-                    joueurCollOffLeft += 15;
-                    joueurCollRef.current.style.left = joueurCollOffLeft + "px";
-                    joueurRef.current.style.top = "-163px";
-
-                    /* délimitation du joueur */
-                    if(joueurCollOffLeft <= 128){
-                        joueurCollOffLeft = 128;
-                        joueurCollRef.current.style.left = "128px";
-                    };
-                    if(joueurCollOffLeft >= 1000){
-                        joueurCollOffLeft = 1000;
-                        joueurCollRef.current.style.left = "1000px";
-                    };
-                    break;
-                default:
-                    break;
-            };
-        });
 
         /* temps défilement joueur */
         setInterval(function(){
@@ -82,6 +41,16 @@ class GamePage extends Component {
             fantomeRougeLeft -= 120;
             fantomeVertLeft -= 120;
         }, 200);
+
+        /* compte a rebours */
+        const intervalId = setInterval(() => {
+            this.setState({
+                compteur: this.state.compteur -1
+            });
+            if(this.state.compteur === 0){
+                clearInterval(intervalId);
+            }
+        }, 1000);
 
         /* départ des objets */
         const departObjet = (monObjet) => {
@@ -104,7 +73,7 @@ class GamePage extends Component {
         /* Request Animation Frame */
         const animation = () => {
 
-            // rafId = requestAnimationFrame(animation);
+            rafId = requestAnimationFrame(animation);
             
             /* objets animés */
             (() => {
@@ -271,9 +240,51 @@ class GamePage extends Component {
 
             })();
         }
-        // setTimeout(() => {
-            animation();
-        // }, 3000);
+        setTimeout(() => {
+
+            /* mouvement joueur */
+            document.addEventListener("keydown", function(event){
+                const direction = event.keyCode;
+
+                switch(direction){
+                    case 37:
+                        /* direction gauche */
+                        joueurCollOffLeft -= 15;
+                        joueurCollRef.current.style.left = joueurCollOffLeft + "px";
+                        joueurRef.current.style.top = "-13px";
+
+                        /* délimitation du joueur */
+                        if(joueurCollOffLeft <= 128){
+                            joueurCollOffLeft = 128;
+                            joueurCollRef.current.style.left = "128px";
+                        };
+                        if(joueurCollOffLeft >= 1000){
+                            joueurCollOffLeft = 1000;
+                            joueurCollRef.current.style.left = "1000px";
+                        };
+                        break;
+                    case 39:
+                        /* direction droite */
+                        joueurCollOffLeft += 15;
+                        joueurCollRef.current.style.left = joueurCollOffLeft + "px";
+                        joueurRef.current.style.top = "-163px";
+
+                        /* délimitation du joueur */
+                        if(joueurCollOffLeft <= 128){
+                            joueurCollOffLeft = 128;
+                            joueurCollRef.current.style.left = "128px";
+                        };
+                        if(joueurCollOffLeft >= 1000){
+                            joueurCollOffLeft = 1000;
+                            joueurCollRef.current.style.left = "1000px";
+                        };
+                        break;
+                    default:
+                        break;
+                };
+            });
+            // animation();
+        }, 3000);
     }
 
     render(){
@@ -347,6 +358,10 @@ class GamePage extends Component {
                     <p>score</p>
                     <span>{ this.state.score }</span>
                 </div>
+                { this.state.compteur === 0 ? 
+                    null :
+                    <div className={ Style.compteur }>{ this.state.compteur }</div>
+                }
             </div>
         )
     }

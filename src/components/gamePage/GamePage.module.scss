@@ -120,5 +120,12 @@
         right: 30px;
         width: 200px;
     }
+    .compteur{
+        position: absolute;
+        font-size: 50rem;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 }
 
