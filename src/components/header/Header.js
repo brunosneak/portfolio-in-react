@@ -6,18 +6,18 @@ import { withRouter } from "react-router-dom";
 
 class Header extends Component{
 
-    constructor(props){
-        super(props);
-        this.state = {
-            show: false
-        }
-    }
+    // constructor(props){
+    //     super(props);
+    //     this.state = {
+    //         show: false
+    //     }
+    // }
 
-    toggle = () => {
-        this.setState({
-            show: !this.state.show
-        })
-    }
+    // toggle = () => {
+    //     this.setState({
+    //         show: !this.state.show
+    //     })
+    // }
     
     render(){
         return (
