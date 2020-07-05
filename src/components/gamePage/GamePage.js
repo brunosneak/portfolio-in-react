@@ -84,14 +84,14 @@ class GamePage extends Component {
         }, 200);
 
         /* départ des objets */
+        const departObjet = (monObjet) => {
+            monObjet.style.bottom = "-" + Math.floor(Math.random()*1000) - monObjet.offsetHeight + "px";
+            monObjet.style.left = (Math.floor(Math.random() * (975 - 128 + 1)) + 128) + "px";
+        };
+
         (() => {
             this.fenetreGauche.current.style.bottom = "-" + Math.floor(Math.random()*1000) - this.fenetreGauche.current.offsetHeight + "px";
             this.fenetreDroite.current.style.bottom  = this.fenetreGauche.current.style.bottom ;
-
-            const departObjet = (monObjet) => {
-                monObjet.style.bottom = "-" + Math.floor(Math.random()*1000) - monObjet.offsetHeight + "px";
-                monObjet.style.left = (Math.floor(Math.random() * (975 - 128 + 1)) + 128) + "px";
-            };
 
             departObjet(this.pieceJs.current);
             departObjet(this.boulePiqueColl.current);
@@ -104,7 +104,7 @@ class GamePage extends Component {
         /* Request Animation Frame */
         const animation = () => {
 
-            rafId = requestAnimationFrame(animation);
+            // rafId = requestAnimationFrame(animation);
             
             /* objets animés */
             (() => {
@@ -129,7 +129,6 @@ class GamePage extends Component {
                 slideUp(objTop.fenetreGaucheTop,this.fenetreGauche, 6);
                 slideUp(objTop.fenetreDroiteTop,this.fenetreDroite, 6);
                 slideUp(objTop.fantomeRougeCollTop,this.fantomeRougeColl, 7);
-                slideUp(objTop.fantomeVertCollTop,this.fantomeVertColl, 8);
                 slideUp(objTop.boulePiqueCollTop,this.boulePiqueColl, 6);
                 slideUp(objTop.pieceHtml5Top,this.pieceHtml5, 6);
                 slideUp(objTop.pieceCss3Top,this.pieceCss3, 6);
@@ -159,9 +158,11 @@ class GamePage extends Component {
                 
                 if( this.state.score >= 5000 ){
                     niveau(5000, 8, 9);
-                    // mouvementFantomeVert();
-                    // monTop(objTop.fantomeVertCollTop, elements.fantomeVertColl, 1);
-                    // positionDeDepartObjet(elements.fantomeVertColl);
+                    if(fantomeVertLeft < -840){
+                        fantomeVertLeft = 0;
+                    };
+                    this.fantomeVert.current.style.left = fantomeVertLeft + "px";
+                    slideUp(objTop.fantomeVertCollTop,this.fantomeVertColl, 1);
                 };
             
                 if( this.state.score >= 10000 ){
@@ -217,10 +218,6 @@ class GamePage extends Component {
                 };
                 this.fantomeRouge.current.style.left = fantomeRougeLeft + "px";
 
-                if(fantomeVertLeft < -840){
-                    fantomeVertLeft = 0;
-                };
-                this.fantomeVert.current.style.left = fantomeVertLeft + "px";
             })();
 
             /* detection de collision */
@@ -274,7 +271,9 @@ class GamePage extends Component {
 
             })();
         }
-        animation();
+        // setTimeout(() => {
+            animation();
+        // }, 3000);
     }
 
     render(){
