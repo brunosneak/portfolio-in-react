@@ -1,7 +1,22 @@
 import React, { Component } from "react";
 import Style from "./ContactPage.module.scss";
-import { Formik } from "formik";
+import { Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+
+const CustomInput = ({ field, form, ...props }) => {
+    return (
+        <>
+            <label>{ field.name + " *" }</label>
+            <input { ...field } { ...props } type="text"/>
+        </>
+    )
+}
+
+const CustomError = (props) => {
+    return (
+        <div className={ Style.error }>{ props.children }</div>
+    )
+}
 
 class ContactPage extends Component {
 
@@ -59,25 +74,11 @@ class ContactPage extends Component {
                                 touched
                             }) => (
                                 <form onSubmit={ handleSubmit }>
-                                    <label>Nom*</label>
-                                    <input 
-                                        name="name" 
-                                        value={ values.name } 
-                                        onChange={ handleChange } 
-                                        onBlur={ handleBlur } 
-                                        type="text"
-                                    />
-                                    { errors.name && touched.name ? <div className={ Style.error }>{ errors.name }</div> : null }
-                                    <label>Email*</label>
-                                    <input 
-                                        name="email" 
-                                        value={ values.email } 
-                                        onChange={ handleChange } 
-                                        onBlur={ handleBlur } 
-                                        type="email"
-                                    />
-                                    { errors.email && touched.email ? <div className={ Style.error }>{ errors.email }</div> : null }
-                                    <label>Message*</label>
+                                    <Field name="name" component={ CustomInput }/>
+                                    <ErrorMessage name="name" component={ CustomError }/>
+                                    <Field name="email" component={ CustomInput }/>
+                                    <ErrorMessage name="email" component={ CustomError }/>
+                                    <label>message *</label>
                                     <textarea 
                                         name="message" 
                                         value={ values.message } 
@@ -85,7 +86,7 @@ class ContactPage extends Component {
                                         onBlur={ handleBlur } 
                                         type="text"
                                     />
-                                    { errors.message && touched.message ? <div className={ Style.error }>{ errors.message }</div> : null }
+                                    <ErrorMessage name="message" component={ CustomError }/>
                                     <p className={ Style.champs }>* champs obligatoires</p>
                                     <button type="submit" disabled={ isSubmitting }>Envoyer</button>
                                 </form>
