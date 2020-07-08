@@ -1,23 +1,19 @@
 import React, { Component } from "react";
 import Style from "./ContactPage.module.scss";
 import { Formik } from "formik";
+import * as Yup from "yup";
 
 class ContactPage extends Component {
+
+    userSchema = Yup.object().shape({
+        name: Yup.string().min(3, 'trop court').required("required"),
+        email: Yup.string().email('mauvais email').required('required'),
+        message: Yup.string().min(10, 'message trop court').required("required")
+    })
 
     submit = (values, actions) => {
         console.log(values);
         actions.setSubmitting(false);
-    }
-
-    validate = (values) => {
-        let errors = {};
-        if(!values.name){
-            errors.name = "required";
-        }
-        else if (values.name.length < 3){
-            errors.name = "trop court";
-        }
-        return errors;
     }
 
     render(){
@@ -50,9 +46,8 @@ class ContactPage extends Component {
                     <section className={ Style.myForm }>
                         <Formik
                             onSubmit={ this.submit }
-                            initialValues={{ name: "", email: "", password: ""}}
-                            validate={ this.validate }
-                            validateOnChange={ false }
+                            initialValues={{ name: "", email: "", message: ""}}
+                            validationSchema= { this.userSchema }
                         >
                             {({
                                 handleChange,
@@ -81,14 +76,17 @@ class ContactPage extends Component {
                                         onBlur={ handleBlur } 
                                         type="email"
                                     />
+                                    { errors.email && touched.email ? <div className={ Style.error }>{ errors.email }</div> : null }
                                     <label>Message*</label>
                                     <textarea 
-                                        name="password" 
-                                        value={ values.password } 
+                                        name="message" 
+                                        value={ values.message } 
                                         onChange={ handleChange } 
                                         onBlur={ handleBlur } 
                                         type="text"
                                     />
+                                    { errors.message && touched.message ? <div className={ Style.error }>{ errors.message }</div> : null }
+                                    <p className={ Style.champs }>* champs obligatoires</p>
                                     <button type="submit" disabled={ isSubmitting }>Envoyer</button>
                                 </form>
                              )}
