@@ -1,3 +1,30 @@
+@mixin responsive($device) {
+    // mobile mode portrait
+    @if $device == mobile {
+        @media screen and (max-width: 575.98px) {
+            @content;
+        }
+    }
+    // mobile mode paysage
+    @if $device == smartphone {
+        @media screen and (max-width: 767.98px) {
+            @content;
+        }
+    }
+    // tablette
+    @if $device == tablette {
+        @media screen and (max-width: 991.98px) {
+            @content;
+        }
+    }
+    // desktop
+    @if $device == desktop {
+        @media screen and (max-width: 1199.98px) {
+            @content;
+        }
+    }
+}
+
 .container {
     height: 100vh;
     display: grid;
@@ -8,6 +35,13 @@
     ". perso ."
     ". start ."
     ". box .";
+    @include responsive(mobile) {
+        grid-template-areas: 
+        "header header header"
+        ". perso ."
+        ". start ."
+        "box box box";
+    }
     place-items: center;
     
     .bgMain, .bg1, .bg2, .bg3, .bg4, .bg5, .bg6  {
@@ -61,6 +95,11 @@
         width: 14rem;
         outline: none;
         cursor: pointer;
+        @include responsive(mobile) {
+            font-size: 2rem;
+            height: 10rem;
+            width: 10rem;
+        }
     }
 
     .boiteInfo{
@@ -68,25 +107,54 @@
         align-items: center;
         background-color: #333;
         border-radius: 25px;
-        color: #fff;
         display: flex;
-        justify-content: center;
-        padding: 1rem 0;
+        justify-content: space-evenly;
         position: relative;
-        max-height: 15rem;
-        max-width: 50rem;
+        max-width: 40rem;
         z-index: 1;
+        height: 15vh;
+        @include responsive(mobile) {
+            margin: 0 2rem;
+        }
+        @include responsive(smartphone) {
+            margin: 0 2rem;
+        }
         .flechesDir{
             width: 40%;
+            margin: 1rem;
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: flex-end;
+            justify-content: center;
             .flecheGauche, .flecheDroite{
                 height: 50px;
+                @include responsive(mobile){
+                    height: 30px;
+                }
+                @include responsive(smartphone){
+                    height: 30px;
+                }
             }
             .flecheHautBas{
                 height: 100px;
+                @include responsive(mobile) {
+                    height: 60px;
+                }
+                @include responsive(smartphone){
+                    height: 60px;
+                }
             }
         }
         p{
             width: 40%;
+            margin: 1rem;
+            margin-right: 3rem;
+            @include responsive(mobile) {
+                font-size: 1.2rem;
+            }
+            @include responsive(smartphone) {
+                font-size: 1.3rem;
+            }
             span{
                 text-decoration: underline;
             }

@@ -1,3 +1,30 @@
+@mixin responsive($device) {
+    // mobile mode portrait
+    @if $device == mobile {
+        @media screen and (max-width: 575.98px) {
+            @content;
+        }
+    }
+    // mobile mode paysage
+    @if $device == smartphone {
+        @media screen and (max-width: 767.98px) {
+            @content;
+        }
+    }
+    // tablette
+    @if $device == tablette {
+        @media screen and (max-width: 991.98px) {
+            @content;
+        }
+    }
+    // desktop
+    @if $device == desktop {
+        @media screen and (max-width: 1199.98px) {
+            @content;
+        }
+    }
+}
+
 .whoIAm {
     background-color: #000;
     height: 100vh;
@@ -9,22 +36,46 @@
     ". profile ."
     ". icons .";
     place-items: center;
+    @include responsive(mobile) {
+        height: 200vh;
+        grid-template-columns: 1fr;
+        grid-template-rows: 20vh 1fr 1fr;
+        grid-template-areas: 
+        "header"
+        "profile"
+        "icons";
+    }
 }
 
 .profile {
     grid-area: profile;
     display: flex;
     justify-content: space-around;
+    @include responsive(mobile) {
+        flex-direction: column;
+    }
     .wrapperPhoto {
         text-align: center;
         width: 50%;
+        @include responsive(mobile) {
+            width: 100%;
+            margin-bottom: 4rem;
+        }
         .photo {
             height: 35rem;
+            @include responsive(mobile) {
+                height: 25rem;
+            }
         }
     }
     .description {
         color: #fff;
         width: 50%;
+        @include responsive(mobile) {
+            width: 100%;
+            text-align: center;
+            padding: 0 2rem;
+        }
         p {
             margin: 0;
         }
@@ -45,6 +96,29 @@
                 font-weight: 400;
             }
         }
+        @include responsive(mobile) {
+            p {
+                margin: 0;
+            }
+            p:first-of-type {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+            p:nth-of-type(2) {
+                font-size: 2rem;
+            }
+            p:nth-of-type(3) {
+                font-size: 2rem;
+                margin-bottom: 3rem;
+            }
+            article {
+                line-height: 2.5rem;
+                strong {
+                    font-size: 2rem;
+                    font-weight: 400;
+                }
+            }
+        }
     }
 }
 
@@ -62,5 +136,22 @@
             height: 11rem;
             width: 11rem;
         }
+    }
+    @include responsive(mobile) {
+        ul {
+            display: grid;
+            grid-row-gap: 2rem;
+            grid-column-gap: 4rem;
+            grid-template-columns: repeat(3, 1fr);
+            .sizeIcon {
+                height: 6rem;
+                width: 6rem;
+            }
+            li:last-of-type {
+                grid-column-start: 2;
+                grid-row-start: 4;
+            }
+        }
+        
     }
 }

@@ -41,22 +41,22 @@ const WhoIAm = () => {
                         <img alt="js" src={require("../../assets/img/js.svg")} className={ Style.sizeIcon }/>
                     </li>
                     <li>
-                        <img alt="jquery" src={require("../../assets/img/react.svg")} className={ Style.sizeIcon }/>
+                        <img alt="react" src={require("../../assets/img/react.svg")} className={ Style.sizeIcon }/>
                     </li>
                     <li>
-                        <img alt="angular" src={require("../../assets/img/formik.svg")} className={ Style.sizeIcon }/>
+                        <img alt="formik" src={require("../../assets/img/formik.svg")} className={ Style.sizeIcon }/>
                     </li>
                     <li>
-                        <img alt="node" src={require("../../assets/img/babel.svg")} className={ Style.sizeIcon }/>
+                        <img alt="babel" src={require("../../assets/img/babel.svg")} className={ Style.sizeIcon }/>
                     </li>
                     <li>
                         <img alt="git" src={require("../../assets/img/github.svg")} className={ Style.sizeIcon }/>
                     </li>
                     <li>
-                        <img alt="mongo" src={require("../../assets/img/webpack.svg")} className={ Style.sizeIcon }/>
+                        <img alt="webpack" src={require("../../assets/img/webpack.svg")} className={ Style.sizeIcon }/>
                     </li>
                     <li>
-                        <img alt="mongo" src={require("../../assets/img/bootstrap.svg")} className={ Style.sizeIcon }/>
+                        <img alt="bootstrap" src={require("../../assets/img/bootstrap.svg")} className={ Style.sizeIcon }/>
                     </li>
                 </ul>
             </section>

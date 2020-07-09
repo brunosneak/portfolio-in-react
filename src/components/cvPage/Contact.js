@@ -1,6 +1,7 @@
 import React from "react";
 import Style from "./Contact.module.scss";
 import { Link } from "react-router-dom";
+import cv from "../../assets/cv/neak-bruno-cv-3WA.pdf";
 
 const Contact = () => {
     return (
@@ -8,7 +9,9 @@ const Contact = () => {
             <img className={ Style.winSkull } alt="window and skulls" src={require("../../assets/img/illustration.svg")}/>
             <section className={ Style.dlcv }>
                 <h3>Alors si on <br/> travaillait ensemble !</h3>
-                <button type="button" className={ Style.btnDlcv }>Télécharger mon cv.pdf</button>
+                <a href={ cv } target="_blank" rel="noopener noreferrer">
+                    <button type="button" className={ Style.btnDlcv }>Télécharger mon cv.pdf</button>
+                </a>
                 <Link to="/contactPage" className={ Style.link }>
                     <button type="button" className={ Style.btnContact }>Contactez-moi</button>
                 </Link>

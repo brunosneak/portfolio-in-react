@@ -4,7 +4,7 @@ import Style from "./Experience.module.scss";
 const Experience = () => {
     return (
         <section className={ Style.xp }>
-            <div className={ Style.lycee }>
+            {/* <div className={ Style.lycee }>
                 <div>
                     <h2>2004 - Lycée Henri Sellier</h2>
                     <p>BEP Vente Action <br/> Marchande</p>
@@ -52,7 +52,7 @@ const Experience = () => {
                     <p>Formation Développeur FullStack jS</p>
                 </div>
                 <img alt="fenêtre html js" src={require("../../assets/img/formationDevJs.png")}/>
-            </div>
+            </div> */}
         </section>
     )
 }

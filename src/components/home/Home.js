@@ -18,7 +18,9 @@ class Home extends Component {
         let persoPosition = this.persoRef.current.offsetLeft;
         idSetInterval = setInterval(() => {
             persoPosition -= 165;
-            this.persoRef.current.style.left = persoPosition + "px";
+            if(this.persoRef.current){
+                this.persoRef.current.style.left = persoPosition + "px";
+            }
             if(persoPosition <= -2500){
                 clearInterval(idSetInterval);
                 this.props.history.push("/gamePage");
@@ -67,8 +69,8 @@ class Home extends Component {
                         <img className={ Style.flecheHautBas } src={require("../../assets/img/flecheHautBas.svg")} alt="flèche directionnelle haut et bas"/>
                         <img className={ Style.flecheDroite } src={require("../../assets/img/flecheDroite.svg")} alt="flèche directionnelle droite"/>
                     </div>
-                    <p><span>But du jeu</span> : Récupérer les pièces pour gagner des points en utilisant
-                        les flèches directionnelles de votre clavier pour vous déplacer.<br/> Atteindre 30.000 points.
+                    <p><span>But du jeu</span> : Récupérer un maximum de pièces en utilisant
+                        les flèches directionnelles pour vous déplacer.<br/>
                     </p>
                     <img className={ Style.croix } onClick={ this.disapear } src={require("../../assets/img/croix.svg")} alt="croix"/>
                 </section>

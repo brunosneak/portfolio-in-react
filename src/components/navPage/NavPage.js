@@ -12,15 +12,27 @@ class NavPage extends Component {
     componentDidMount() {
         let idSetInterval;
         let persoPause = this.persoPauseRef.current.offsetLeft;
-        idSetInterval = setInterval(() => {
-            persoPause -= 200;
-            if(this.persoPauseRef && this.persoPauseRef.current){
-                this.persoPauseRef.current.style.left = persoPause + "px";
-            }
-            if(persoPause <= -800){
-                clearInterval(idSetInterval);
-            };
-        }, 200);
+        if(window.innerWidth <= 575.98){
+            idSetInterval = setInterval(() => {
+                persoPause -= 160;
+                if(this.persoPauseRef && this.persoPauseRef.current){
+                    this.persoPauseRef.current.style.left = persoPause + "px";
+                }
+                if(persoPause <= -600){
+                    clearInterval(idSetInterval);
+                };
+            }, 200);
+        } else {
+            idSetInterval = setInterval(() => {
+                persoPause -= 200;
+                if(this.persoPauseRef && this.persoPauseRef.current){
+                    this.persoPauseRef.current.style.left = persoPause + "px";
+                }
+                if(persoPause <= -800){
+                    clearInterval(idSetInterval);
+                };
+            }, 200);
+        }
     }
 
     render(){

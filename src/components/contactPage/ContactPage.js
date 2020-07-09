@@ -2,12 +2,22 @@ import React, { Component } from "react";
 import Style from "./ContactPage.module.scss";
 import { Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import apiFirebase from "../../api/api.firebase";
 
 const CustomInput = ({ field, form, ...props }) => {
     return (
         <>
             <label>{ field.name + " *" }</label>
             <input { ...field } { ...props } type="text"/>
+        </>
+    )
+}
+
+const CustomTextarea = ({ field, form, ...props }) => {
+    return (
+        <>
+            <label>{ field.name + " *" }</label>
+            <textarea { ...field } { ...props } type="text"/>
         </>
     )
 }
@@ -21,14 +31,15 @@ const CustomError = (props) => {
 class ContactPage extends Component {
 
     userSchema = Yup.object().shape({
-        name: Yup.string().min(3, 'trop court').required("required"),
-        email: Yup.string().email('mauvais email').required('required'),
-        message: Yup.string().min(10, 'message trop court').required("required")
+        nom: Yup.string().required("champ obligatoire à saisir"),
+        email: Yup.string().email('email incorrect').required('champ obligatoire à saisir'),
+        message: Yup.string().required("champ obligatoire à saisir")
     })
 
     submit = (values, actions) => {
-        console.log(values);
         actions.setSubmitting(false);
+        actions.resetForm();
+        apiFirebase.post("contact.json", values);
     }
 
     render(){
@@ -61,31 +72,19 @@ class ContactPage extends Component {
                     <section className={ Style.myForm }>
                         <Formik
                             onSubmit={ this.submit }
-                            initialValues={{ name: "", email: "", message: ""}}
+                            initialValues={{ nom: "", email: "", message: ""}}
                             validationSchema= { this.userSchema }
                         >
                             {({
-                                handleChange,
-                                handleBlur,
                                 handleSubmit,
-                                values,
                                 isSubmitting,
-                                errors,
-                                touched
                             }) => (
                                 <form onSubmit={ handleSubmit }>
-                                    <Field name="name" component={ CustomInput }/>
-                                    <ErrorMessage name="name" component={ CustomError }/>
+                                    <Field name="nom" component={ CustomInput }/>
+                                    <ErrorMessage name="nom" component={ CustomError }/>
                                     <Field name="email" component={ CustomInput }/>
                                     <ErrorMessage name="email" component={ CustomError }/>
-                                    <label>message *</label>
-                                    <textarea 
-                                        name="message" 
-                                        value={ values.message } 
-                                        onChange={ handleChange } 
-                                        onBlur={ handleBlur } 
-                                        type="text"
-                                    />
+                                    <Field name="message" component={ CustomTextarea }/>
                                     <ErrorMessage name="message" component={ CustomError }/>
                                     <p className={ Style.champs }>* champs obligatoires</p>
                                     <button type="submit" disabled={ isSubmitting }>Envoyer</button>

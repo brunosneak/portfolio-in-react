@@ -1,3 +1,30 @@
+@mixin responsive($device) {
+    // mobile mode portrait
+    @if $device == mobile {
+        @media screen and (max-width: 575.98px) {
+            @content;
+        }
+    }
+    // mobile mode paysage
+    @if $device == smartphone {
+        @media screen and (max-width: 767.98px) {
+            @content;
+        }
+    }
+    // tablette
+    @if $device == tablette {
+        @media screen and (max-width: 991.98px) {
+            @content;
+        }
+    }
+    // desktop
+    @if $device == desktop {
+        @media screen and (max-width: 1199.98px) {
+            @content;
+        }
+    }
+}
+
 .xp {
     background-image: url("../../assets/img/bgCv.svg");
     background-size: cover;
@@ -6,91 +33,91 @@
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     position: relative;
-    .lycee {
-        display: flex;
-        position: absolute;
-        bottom: 0;
-        grid-column-start: 1;
-        div {
-            text-align: right;
-            position: relative;
-            top: 5rem;
-            margin: 0 2rem;
-            height: 100%;
-        }
-        h2::after {
-            content: "";
-            background-color: #000;
-            display: block;
-            height: 0.2rem;
-            margin-top: 0.5rem;
-            position: absolute;
-            right: 0;
-            width: 10rem;
-        }
-    }
-    .acf {
-        display: flex;
-        position: absolute;
-        top: 0;
-        grid-column-start: 2;
-        div {
-            text-align: right;
-            position: relative;
-            top: 5rem;
-            margin-right: 2rem;
-            height: 100%;
-        }
-        h2::after {
-            content: "";
-            background-color: #000;
-            display: block;
-            height: 0.2rem;
-            margin-top: 0.5rem;
-            position: absolute;
-            right: 0;
-            width: 10rem;
-        }
-    }
-    .croupier {
+    // .lycee {
+    //     display: flex;
+    //     position: absolute;
+    //     bottom: 0;
+    //     grid-column-start: 1;
+    //     div {
+    //         text-align: right;
+    //         position: relative;
+    //         top: 5rem;
+    //         margin: 0 2rem;
+    //         height: 100%;
+    //     }
+    //     h2::after {
+    //         content: "";
+    //         background-color: #000;
+    //         display: block;
+    //         height: 0.2rem;
+    //         margin-top: 0.5rem;
+    //         position: absolute;
+    //         right: 0;
+    //         width: 10rem;
+    //     }
+    // }
+    // .acf {
+    //     display: flex;
+    //     position: absolute;
+    //     top: 0;
+    //     grid-column-start: 2;
+    //     div {
+    //         text-align: right;
+    //         position: relative;
+    //         top: 5rem;
+    //         margin-right: 2rem;
+    //         height: 100%;
+    //     }
+    //     h2::after {
+    //         content: "";
+    //         background-color: #000;
+    //         display: block;
+    //         height: 0.2rem;
+    //         margin-top: 0.5rem;
+    //         position: absolute;
+    //         right: 0;
+    //         width: 10rem;
+    //     }
+    // }
+    // .croupier {
 
-    }
-    .stockiste {
+    // }
+    // .stockiste {
 
-    }
-    .eMultiM {
-        div {
-            position: relative;
-            text-align: right;
-        }
-        h2::after {
-            content: "";
-            background-color: #000;
-            display: block;
-            height: 0.2rem;
-            margin-top: 0.5rem;
-            position: absolute;
-            right: 0;
-            width: 10rem;
-        }
-    }
-    .eCom {
+    // }
+    // .eMultiM {
+    //     div {
+    //         position: relative;
+    //         text-align: right;
+    //     }
+    //     h2::after {
+    //         content: "";
+    //         background-color: #000;
+    //         display: block;
+    //         height: 0.2rem;
+    //         margin-top: 0.5rem;
+    //         position: absolute;
+    //         right: 0;
+    //         width: 10rem;
+    //     }
+    // }
+    // .eCom {
 
-    }
-    .ifocop {
-        div {
-            position: relative;
-            text-align: right;
-        }
-        h2::after {
-            content: "";
-            background-color: #000;
-            display: block;
-            height: 0.2rem;
-            margin-top: 0.5rem;
-            position: absolute;
-            right: 0;
-            width: 10rem;
-        }
-    }
+    // }
+    // .ifocop {
+    //     div {
+    //         position: relative;
+    //         text-align: right;
+    //     }
+    //     h2::after {
+    //         content: "";
+    //         background-color: #000;
+    //         display: block;
+    //         height: 0.2rem;
+    //         margin-top: 0.5rem;
+    //         position: absolute;
+    //         right: 0;
+    //         width: 10rem;
+    //     }
+    // }
 }

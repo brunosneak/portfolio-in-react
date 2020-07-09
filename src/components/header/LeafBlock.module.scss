@@ -1,3 +1,36 @@
+@mixin responsive($device) {
+    // mobile mode portrait
+    @if $device == mobile {
+        @media screen and (max-width: 575.98px) {
+            @content;
+        }
+    }
+    // mobile mode paysage
+    @if $device == smartphone {
+        @media screen and (min-width: 576px) {
+            @content;
+        }
+    }
+    // tablette
+    @if $device == tablette {
+        @media screen and (min-width: 768px) {
+            @content;
+        }
+    }
+    // desktop
+    @if $device == desktop {
+        @media screen and (min-width: 992px) {
+            @content;
+        }
+    }
+    // large desktop
+    @if $device == largeDesktop {
+        @media screen and (min-width: 1200px) {
+            @content;
+        }
+    }
+}
+
 .bgLeafBlock {
     background-image: url("../../assets/img/leafBlock.svg");
     background-repeat: no-repeat;
@@ -13,4 +46,8 @@
     margin: 0;
     font-size: 3rem;
     padding-bottom: 10rem;
+    @include responsive(mobile) {
+        font-size: 2.2rem;
+        padding-bottom: 6rem;
+    }
 }
