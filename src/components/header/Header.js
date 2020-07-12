@@ -5,24 +5,11 @@ import Style from "./Header.module.scss";
 import { withRouter } from "react-router-dom";
 
 class Header extends Component{
-
-    // constructor(props){
-    //     super(props);
-    //     this.state = {
-    //         show: false
-    //     }
-    // }
-
-    // toggle = () => {
-    //     this.setState({
-    //         show: !this.state.show
-    //     })
-    // }
     
     render(){
         return (
             <div className={ Style.container }>
-                <MenuBurger/>
+                <MenuBurger nav={ this.props.nav } stateNav={ this.props.stateNav }/>
                 <LeafBlock/>
             </div>
         )

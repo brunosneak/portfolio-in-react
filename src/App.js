@@ -1,25 +1,38 @@
 import React, { Component } from 'react';
-import { Home, NavPage, CvPage, GamePage } from "./components";
+import { Home, CvPage, GamePage } from "./components";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ContactPage from './components/contactPage/ContactPage';
 import Header from './components/header/Header';
 
 class App extends Component {
 
-  render(){
-  return (
-      <Router>
-        <Header/>
-        <Switch>
-          <Route exact path="/" component={ Home }></Route>
-          <Route path="/navPage" component={ NavPage }></Route>
-          <Route path="/cvPage" component={ CvPage }></Route>
-          <Route path="/contactPage" component={ ContactPage }></Route>
-          <Route path="/gamePage" component={ GamePage }></Route>
-        </Switch>
-      </Router>
-    )
+  constructor(props){
+    super(props);
+    this.state = {
+      nav: false
+    }
   }
+
+  click = () => {
+    this.setState({
+      nav: !this.state.nav
+    });
+  }
+
+  render(){
+    const stateNav = this.state.nav;
+    return (
+        <Router>
+          <Header nav={ this.click } stateNav={ stateNav }/>
+          <Switch>
+            <Route exact path="/" render={ () => <Home nav={ this.click } stateNav={ stateNav }/> }/>
+            <Route path="/cvPage" render={ () => <CvPage nav={ this.click } stateNav={ stateNav }/> }/>
+            <Route path="/contactPage" render={ () => <ContactPage nav={ this.click } stateNav={ stateNav }/> }/>
+            <Route path="/gamePage" render={ () => <GamePage nav={ this.click } stateNav={ stateNav }/> }/>
+          </Switch>
+        </Router>
+      )
+    }
 }
 
 export default App;

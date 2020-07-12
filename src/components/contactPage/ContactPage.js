@@ -3,6 +3,7 @@ import Style from "./ContactPage.module.scss";
 import { Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import apiFirebase from "../../api/api.firebase";
+import NavPage from "../navPage/NavPage";
 
 const CustomInput = ({ field, form, ...props }) => {
     return (
@@ -44,6 +45,7 @@ class ContactPage extends Component {
 
     render(){
         return (
+            this.props.stateNav ? <NavPage/> :
             <div className={ Style.container }>
                 <div className={ Style.bgForm }>
                     <section className={ Style.contact }>

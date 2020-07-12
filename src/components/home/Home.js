@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Style from "./Home.module.scss";
 import { withRouter } from "react-router-dom";
+import NavPage from "../navPage/NavPage";
 
 class Home extends Component {
 
@@ -42,6 +43,7 @@ class Home extends Component {
 
     render(){
         return (
+            this.props.stateNav ? <NavPage/> :
             <div className={ Style.container }>
                 <section>
                     <div className={ Style.bgMain }/>
