@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 const LeafBlock = (props) => {
 
     return (
-        (props.location.pathname === "/gamePage" ? null : <h1 className={ Style.bgLeafBlock }>NEAK BRUNO</h1>)
+        (props.location.pathname === "/gamePage" && props.stateNav ? <h1 className={ Style.bgLeafBlock }>NEAK BRUNO</h1> : null)
     )
 }
 

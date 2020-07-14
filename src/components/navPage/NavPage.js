@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Style from "./NavPage.module.scss";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 class NavPage extends Component {
 
@@ -33,6 +33,7 @@ class NavPage extends Component {
                 };
             }, 200);
         }
+        
     }
 
     render(){
@@ -42,10 +43,12 @@ class NavPage extends Component {
                 <div className={ Style.maskQuestion }>
                     <img ref={ this.persoPauseRef } alt="personnage en pause" src={require("../../assets/img/spritePersoPause.svg")} className={ Style.question }/>
                 </div>
-                <ul className={ Style.nav}>
-                    <li><Link to="/cvPage">Mon CV</Link></li>
-                    <li><Link to="/contactPage">Contactez-moi</Link></li>
-                    <li><Link to="/gamePage">Commencer la partie</Link></li>
+                <ul className={ Style.nav }>
+                    <li><Link to="/cvPage" onClick={ this.props.nav }>Mon CV</Link></li>
+                    <li><Link to="/contactPage" onClick={ this.props.nav }>Contactez-moi</Link></li>
+                    <li><Link to="/gamePage" onClick={ this.props.nav }>
+                    {this.props.location.pathname === "/gamePage" && this.props.stateNav ? "Reprendre la partie" : "Commencer la partie"}
+                    </Link></li>
                     <li>Tableau des scores</li>                
                 </ul>
                 <ul className={ Style.social }>
@@ -65,4 +68,4 @@ class NavPage extends Component {
     }
 }
 
-export default NavPage;
+export default withRouter(NavPage);

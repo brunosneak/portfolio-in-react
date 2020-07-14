@@ -43,7 +43,7 @@ class Home extends Component {
 
     render(){
         return (
-            this.props.stateNav ? <NavPage/> :
+            this.props.stateNav ? <NavPage nav={ this.props.nav }/> :
             <div className={ Style.container }>
                 <section>
                     <div className={ Style.bgMain }/>

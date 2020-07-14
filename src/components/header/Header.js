@@ -10,7 +10,7 @@ class Header extends Component{
         return (
             <div className={ Style.container }>
                 <MenuBurger nav={ this.props.nav } stateNav={ this.props.stateNav }/>
-                <LeafBlock/>
+                <LeafBlock stateNav={ this.props.stateNav }/>
             </div>
         )
     }

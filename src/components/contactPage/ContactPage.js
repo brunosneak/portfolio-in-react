@@ -45,7 +45,7 @@ class ContactPage extends Component {
 
     render(){
         return (
-            this.props.stateNav ? <NavPage/> :
+            this.props.stateNav ? <NavPage nav={ this.props.nav }/> :
             <div className={ Style.container }>
                 <div className={ Style.bgForm }>
                     <section className={ Style.contact }>

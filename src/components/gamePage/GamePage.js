@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Style from "./GamePage.module.scss";
 import { withRouter } from "react-router-dom";
+import NavPage from "../navPage/NavPage";
 
 class GamePage extends Component {
 
@@ -34,6 +35,8 @@ class GamePage extends Component {
         let fantomeRougeLeft = this.fantomeRouge.current.offsetLeft;
         let fantomeVertLeft = this.fantomeVert.current.offsetLeft;
         let rafId;
+
+        // this.props.stateNav ? cancelAnimationFrame(rafId) : requestAnimationFrame(rafId);
 
         /* temps défilement joueur */
         setInterval(function(){
@@ -320,6 +323,7 @@ class GamePage extends Component {
 
     render(){
         return (
+            this.props.stateNav ? <NavPage nav={ this.props.nav } stateNav={ this.props.stateNav }/> :
             <div className={ Style.container } ref={ this.fondVert }>
                 <div className={ Style.tour }>
 
