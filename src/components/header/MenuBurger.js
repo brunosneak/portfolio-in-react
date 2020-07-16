@@ -7,6 +7,7 @@ class MenuBurger extends Component {
     render(){
         console.log(this.props.stateNav);
         return (
+            this.props.stateGame ? null :
             <div className={ Style.menuBurger } onClick={ this.props.nav }>
                 <span className={ this.props.stateNav === true ? 
                     Style.span1Forward :

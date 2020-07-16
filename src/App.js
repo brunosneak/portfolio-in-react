@@ -30,7 +30,7 @@ class App extends Component {
     const stateNav = this.state.nav;
     return (
         <Router>
-          <Header nav={ this.click } stateNav={ stateNav }/>
+          <Header nav={ this.click } stateNav={ stateNav } stateGame={ this.state.game }/>
           <Switch>
             <Route exact path="/" render={ () => <Home 
               nav={ this.click }
