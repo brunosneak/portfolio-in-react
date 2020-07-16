@@ -19,12 +19,6 @@ class App extends Component {
     });
   }
 
-  clickFalse = () => {
-    this.setState({
-      nav: false
-    });
-  }
-
   render(){
     const stateNav = this.state.nav;
     return (
@@ -32,22 +26,18 @@ class App extends Component {
           <Header nav={ this.click } stateNav={ stateNav }/>
           <Switch>
             <Route exact path="/" render={ () => <Home 
-              navFalse={ this.clickFalse } 
               nav={ this.click }
               stateNav={ stateNav }/> }
             />
             <Route path="/cvPage" render={ () => <CvPage 
-              navFalse={ this.clickFalse } 
               nav={ this.click } 
               stateNav={ stateNav }/> }
             />
             <Route path="/contactPage" render={ () => <ContactPage 
-              navFalse={ this.clickFalse } 
               nav={ this.click } 
               stateNav={ stateNav }/> }
             />
             <Route path="/gamePage" render={ () => <GamePage 
-              navFalse={ this.clickFalse } 
               nav={ this.click } 
               stateNav={ stateNav }/> }
             />

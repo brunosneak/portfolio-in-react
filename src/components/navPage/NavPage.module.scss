@@ -121,3 +121,24 @@
         }
     }
 }
+
+.maskWin {
+    grid-row-start: 2;
+    grid-column-start: 2;
+    height: 210px;
+    overflow: hidden;
+    position: relative;
+    width: 175px;
+    bottom: 6rem;
+    @include responsive(mobile) {
+
+    }
+    .win {
+        left: 0;
+        position: absolute;
+        width: 1000px;
+        @include responsive(mobile) {
+
+        }
+    }
+}

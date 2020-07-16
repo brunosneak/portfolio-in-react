@@ -6,12 +6,6 @@ import NavPage from "../navPage/NavPage";
 
 class CvPage extends Component {
 
-    componentDidMount(){
-        if(this.props.stateNav === true){
-            this.props.navFalse();
-        }
-    }
-
     render(){
         return (
             this.props.stateNav ? 

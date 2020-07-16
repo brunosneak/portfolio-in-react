@@ -247,6 +247,7 @@ class GamePage extends Component {
                             objCoord.coordMasque.top < objCoord.coordboulePiqueColl.top + objCoord.coordboulePiqueColl.height &&
                             objCoord.coordMasque.height + objCoord.coordMasque.top > objCoord.coordboulePiqueColl.top)){
                                 cancelAnimationFrame(rafId);
+                                this.props.nav();
                         };
 
                         /* detection pièces*/
