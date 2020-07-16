@@ -39,6 +39,7 @@
     place-items: center;
     @include responsive(mobile) {
         grid-template-columns: auto;
+        grid-template-columns: 1fr 15fr 1fr;
     }
     .bgForm {
         border-radius: 10rem 10rem 0 0;
@@ -51,7 +52,9 @@
         align-self: end;
         display: flex;
         @include responsive(mobile) {
+            border-radius: 3rem 3rem 0 0;
             flex-direction: column;
+            justify-content: center;
         }
         .contact {
             display: grid;
@@ -61,7 +64,12 @@
             z-index: 10;
             font-size: 2rem;
             @include responsive(mobile) {
-
+                grid-template-rows: none;
+                padding: 0;
+                width: 100%;
+                justify-content: center;
+                font-size: 1.6rem;
+                text-align: center;
             }
             h2 {
                 font-size: 5rem;
@@ -73,7 +81,9 @@
                     align-items: center;
                     margin-bottom: 2rem;
                     width: max-content;
-
+                }
+                p{
+                    display: none;
                 }
             }
             .social {
@@ -82,6 +92,7 @@
                     width: max-content;
                     align-items: center;
                     margin-bottom: 2rem;
+                    display: none;
                 }
             }
             img {
@@ -91,29 +102,22 @@
             }
             @include responsive(mobile) {
                 h2 {
-                    font-size: 3rem;
+                    font-size: 2.5rem;
+                    margin-bottom: 1rem;
                 }
                 .coord {
                     p, a {
-                        display: flex;
-                        align-items: center;
-                        margin-bottom: 2rem;
-                        width: max-content;
-    
+                        margin-bottom: 1rem;
                     }
                 }
                 .social {
                     a {
-                        display: flex;
-                        width: max-content;
-                        align-items: center;
-                        margin-bottom: 2rem;
+                        margin-bottom: 1rem;
                     }
                 }
                 img {
-                    height: 4rem;
-                    margin-right: 1rem;
-                    width: 4rem;
+                    height: 2.5rem;
+                    width: 2.5rem;
                 }
             }
         }
@@ -161,6 +165,24 @@
                     background-color: #f7b3b1;
                     outline: none;
                     cursor: pointer;
+                }
+            }
+        }
+        @include responsive(mobile) {
+            .myForm {
+                width: 100%;
+                justify-content: center;
+                form {
+                    width: 80%;
+                    label {
+                        margin-top: 0;
+                    }
+                    textarea {
+                        height: 8rem;
+                    }
+                    button {
+                        align-self: center;
+                    }
                 }
             }
         }
