@@ -11,7 +11,7 @@ class NavPage extends Component {
     }
     
     componentDidMount() {
-        if(this.props.location.pathname === "/gamePage" && this.props.stateNav === true){
+        if(this.props.location.pathname === "/gamePage" && this.props.stateGame === true){
             let persoWin = this.persoWinRef.current.offsetLeft;
             setInterval(() => {
                 persoWin -= 166.6;
@@ -19,7 +19,6 @@ class NavPage extends Component {
                     this.persoWinRef.current.style.left = persoWin + "px";
                 }
                 if(persoWin <= -800){
-                    // clearInterval(idSetInterval);
                     persoWin = 166.6;
                 };
             }, 200);
@@ -54,7 +53,7 @@ class NavPage extends Component {
         return (
             <div className={ Style.container }>
                 <div className={ Style.platform }/>
-                {this.props.location.pathname === "/gamePage" && this.props.stateNav ?
+                {this.props.location.pathname === "/gamePage" && this.props.stateGame ?
                 <div className={ Style.maskWin }>
                     <img ref={ this.persoWinRef } alt="personnage gagnant" src={require("../../assets/img/spritePersoWin.svg")} className={ Style.win }/>
                 </div>

@@ -247,6 +247,7 @@ class GamePage extends Component {
                             objCoord.coordMasque.top < objCoord.coordboulePiqueColl.top + objCoord.coordboulePiqueColl.height &&
                             objCoord.coordMasque.height + objCoord.coordMasque.top > objCoord.coordboulePiqueColl.top)){
                                 cancelAnimationFrame(rafId);
+                                this.props.game();
                                 this.props.nav();
                         };
 
@@ -324,7 +325,11 @@ class GamePage extends Component {
 
     render(){
         return (
-            this.props.stateNav ? <NavPage nav={ this.props.nav } stateNav={ this.props.stateNav }/> :
+              this.props.stateNav ? <NavPage 
+                nav={ this.props.nav } 
+                stateNav={ this.props.stateNav }
+                stateGame={ this.props.stateGame }
+              /> :
             <div className={ Style.container } ref={ this.fondVert }>
                 <div className={ Style.tour }>
 

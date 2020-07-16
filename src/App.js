@@ -9,13 +9,20 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      nav: false
+      nav: false,
+      game: false
     }
   }
 
   click = () => {
     this.setState({
       nav: !this.state.nav
+    });
+  }
+
+  game = () => {
+    this.setState({
+      game: !this.state.game
     });
   }
 
@@ -39,7 +46,10 @@ class App extends Component {
             />
             <Route path="/gamePage" render={ () => <GamePage 
               nav={ this.click } 
-              stateNav={ stateNav }/> }
+              stateNav={ stateNav }
+              game={ this.game }
+              stateGame={ this.state.game }
+              /> }
             />
           </Switch>
         </Router>
