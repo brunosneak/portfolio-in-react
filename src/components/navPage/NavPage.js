@@ -11,6 +11,32 @@ class NavPage extends Component {
     }
     
     componentDidMount() {
+        let idSetInterval;
+        let persoPause = this.persoPauseRef.current.offsetLeft;
+        if(window.innerWidth <= 575.98){
+            idSetInterval = setInterval(() => {
+                persoPause -= 160;
+                if(this.persoPauseRef && this.persoPauseRef.current){
+                    this.persoPauseRef.current.style.left = persoPause + "px";
+                }
+                if(persoPause <= -600){
+                    clearInterval(idSetInterval);
+                };
+            }, 200);
+        } else {
+            idSetInterval = setInterval(() => {
+                persoPause -= 200;
+                if(this.persoPauseRef && this.persoPauseRef.current){
+                    this.persoPauseRef.current.style.left = persoPause + "px";
+                }
+                if(persoPause <= -800){
+                    clearInterval(idSetInterval);
+                };
+            }, 200);
+        }
+    }
+
+    componentDidUpdate(){
         if(this.props.location.pathname === "/gamePage" && this.props.stateGame === true){
             let persoWin = this.persoWinRef.current.offsetLeft;
             setInterval(() => {
@@ -22,30 +48,6 @@ class NavPage extends Component {
                     persoWin = 166.6;
                 };
             }, 200);
-        } else {
-            let idSetInterval;
-            let persoPause = this.persoPauseRef.current.offsetLeft;
-            if(window.innerWidth <= 575.98){
-                idSetInterval = setInterval(() => {
-                    persoPause -= 160;
-                    if(this.persoPauseRef && this.persoPauseRef.current){
-                        this.persoPauseRef.current.style.left = persoPause + "px";
-                    }
-                    if(persoPause <= -600){
-                        clearInterval(idSetInterval);
-                    };
-                }, 200);
-            } else {
-                idSetInterval = setInterval(() => {
-                    persoPause -= 200;
-                    if(this.persoPauseRef && this.persoPauseRef.current){
-                        this.persoPauseRef.current.style.left = persoPause + "px";
-                    }
-                    if(persoPause <= -800){
-                        clearInterval(idSetInterval);
-                    };
-                }, 200);
-            }
         }
     }
 
@@ -53,15 +55,15 @@ class NavPage extends Component {
         return (
             <div className={ Style.container }>
                 <div className={ Style.platform }/>
-                {this.props.location.pathname === "/gamePage" && this.props.stateGame ?
-                <div className={ Style.maskWin }>
-                    <img ref={ this.persoWinRef } alt="personnage gagnant" src={require("../../assets/img/spritePersoWin.svg")} className={ Style.win }/>
-                </div>
-                : 
-                <div className={ Style.maskQuestion }>
-                    <img ref={ this.persoPauseRef } alt="personnage en pause" src={require("../../assets/img/spritePersoPause.svg")} className={ Style.question }/>
-                </div> 
-                }
+                    {this.props.location.pathname === "/gamePage" && this.props.stateGame ?
+                    <div className={ Style.maskWin }>
+                        <img ref={ this.persoWinRef } alt="personnage gagnant" src={require("../../assets/img/spritePersoWin.svg")} className={ Style.win }/>
+                    </div>
+                    : 
+                    <div className={ Style.maskQuestion } >
+                        <img ref={ this.persoPauseRef } alt="personnage en pause" src={require("../../assets/img/spritePersoPause.svg")} className={ Style.question }/>
+                    </div> 
+                    }
                 <ul className={ Style.nav }>
                     <li><Link to="/cvPage" onClick={ this.props.nav }>Mon CV</Link></li>
                     <li><Link to="/contactPage" onClick={ this.props.nav }>Contactez-moi</Link></li>

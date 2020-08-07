@@ -1,3 +1,30 @@
+@mixin responsive($device) {
+    // mobile mode portrait
+    @if $device == mobile {
+        @media screen and (max-width: 575.98px) {
+            @content;
+        }
+    }
+    // mobile mode paysage
+    @if $device == smartphone {
+        @media screen and (max-width: 767.98px) {
+            @content;
+        }
+    }
+    // tablette
+    @if $device == tablette {
+        @media screen and (max-width: 991.98px) {
+            @content;
+        }
+    }
+    // desktop
+    @if $device == desktop {
+        @media screen and (max-width: 1199.98px) {
+            @content;
+        }
+    }
+}
+
 .container {
     background-image: url("../../assets/img/fondVertDuJeu.svg");
     background-size: cover;
@@ -80,7 +107,7 @@
             position: absolute;
             width: 51px;
             .boulePique{
-                height: 100px;
+                height: 10rem;
                 left: -28px;
                 position: absolute;
                 top: -26px;
@@ -100,6 +127,16 @@
         .pieceHtml5{
             left: 60%;
         }
+        .flechesDir{
+            display: flex;
+            justify-content: space-around;
+            bottom: 5rem;
+            position: absolute;
+            width: 100%;
+            .flecheGauche, .flecheDroite{
+                height: 5rem;
+            }
+        }
     }
     .scoreDuJeu{
         align-items: center;
@@ -109,15 +146,15 @@
         color: #fff;
         display: flex;
         font-family: 'Dosis', sans-serif;
-        font-size: 1.5em;
-        height: 60px;
+        font-size: 2.5rem;
+        height: 6rem;
         justify-content: space-around;
         margin: 0;
         opacity: 0.7;
         position: absolute;
-        top: 30px;
+        top: 2rem;
         text-transform: uppercase;
-        right: 30px;
+        right: 2rem;
         width: 200px;
     }
     .compteur{
@@ -129,3 +166,65 @@
     }
 }
 
+@include responsive(mobile) {
+    .container {
+        .tour {
+            background-size: auto;
+            width: 100vw;
+            .fenetreGauche, .fenetreDroite {
+                height: 20rem;
+            }
+            .fenetreGauche{
+                left: 15%;
+            }
+            .fenetreDroite{
+                left: 54%;
+            }
+            .persoCollision{
+                height: 53px;
+                width: 44px;
+                .masquePerso{
+                    height: 85px;
+                    width: 73px;
+                    .perso{
+                        height: 20rem;
+                        left: -6px;
+                        top: -8px;
+                    }
+                }
+            }
+            .fantomeRougeColl, .fantomeVertColl{
+                height: 47px;
+                width: 37px;
+                .masqueFantomeRouge, .masqueFantomeVert{
+                    height: 10rem;
+                    width: 8rem;
+                    .fantomeRouge, .fantomeVert{
+                        height: 10rem;
+                    }
+                }
+            }
+            .boulePiqueColl{
+                height: 35px;
+                width: 35px;
+                .boulePique{
+                    height: 6rem;
+                    left: -15px;
+                    top: -13px;
+                }
+            }
+            .pieceJs, .pieceCss3, .pieceHtml5{
+                height: 6rem;
+            }
+        }
+        .scoreDuJeu{
+            font-size: 2rem;
+            height: 4rem;
+            width: 15rem;
+        }
+        .compteur{
+            font-size: 20rem;
+            z-index: 20;
+        }
+    }
+}

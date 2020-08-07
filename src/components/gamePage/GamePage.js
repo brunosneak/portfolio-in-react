@@ -26,24 +26,74 @@ class GamePage extends Component {
         }
     }
 
+    gauche = () => {
+        const joueurRef = this.joueurRef;
+        const joueurCollRef = this.joueurCollRef;
+        let joueurCollOffLeft = joueurCollRef.current.offsetLeft;
+
+        /* direction gauche */
+        joueurCollOffLeft -= 15;
+        if(joueurCollRef.current){
+            joueurCollRef.current.style.left = joueurCollOffLeft + "px";
+            joueurRef.current.style.top = "-8px";
+        }
+        /* délimitation du joueur */
+        if(joueurCollOffLeft <= 48 && joueurCollRef.current){
+            joueurCollOffLeft = 48;
+            joueurCollRef.current.style.left = "48px";
+        };
+        if(joueurCollOffLeft >= window.innerWidth - 90 && joueurCollRef.current){
+            joueurCollOffLeft = window.innerWidth - 90;
+            joueurCollRef.current.style.left = window.innerWidth - 90 + "px";
+        };
+    }
+
+    droite = () => {
+        const joueurRef = this.joueurRef;
+        const joueurCollRef = this.joueurCollRef;
+        let joueurCollOffLeft = joueurCollRef.current.offsetLeft;
+        /* direction droite */
+        joueurCollOffLeft += 15;
+        if(joueurCollRef.current){
+            joueurCollRef.current.style.left = joueurCollOffLeft + "px";
+            joueurRef.current.style.top = "-108px";
+        }
+        /* délimitation du joueur */
+        if(joueurCollOffLeft <= 48 && joueurCollRef.current){
+            joueurCollOffLeft = 48;
+            joueurCollRef.current.style.left = "48px";
+        };
+        if(joueurCollOffLeft >= window.innerWidth - 90 && joueurCollRef.current){
+            joueurCollOffLeft = window.innerWidth - 90;
+            joueurCollRef.current.style.left = window.innerWidth - 90 + "px";
+        };
+    }
+
     componentDidMount(){
 
         const joueurRef = this.joueurRef;
         const joueurCollRef = this.joueurCollRef;
-        let joueurOffLeft = joueurRef.current.offsetLeft;
         let joueurCollOffLeft = joueurCollRef.current.offsetLeft;
+        let joueurOffLeft = joueurRef.current.offsetLeft;
         let fantomeRougeLeft = this.fantomeRouge.current.offsetLeft;
         let fantomeVertLeft = this.fantomeVert.current.offsetLeft;
         let rafId;
 
-        // this.props.stateNav ? cancelAnimationFrame(rafId) : requestAnimationFrame(rafId);
-
         /* temps défilement joueur */
-        setInterval(function(){
-            joueurOffLeft -= 120;
-            fantomeRougeLeft -= 120;
-            fantomeVertLeft -= 120;
-        }, 200);
+        
+        if(window.innerWidth <= 575.98){
+            setInterval(function(){
+                joueurOffLeft -= 80;
+                fantomeRougeLeft -= 80;
+                fantomeVertLeft -= 80;
+            }, 200);
+        } else {
+            setInterval(function(){
+                joueurOffLeft -= 120;
+                fantomeRougeLeft -= 120;
+                fantomeVertLeft -= 120;
+            }, 200);
+        }
 
         /* compte a rebours */
         const intervalId = setInterval(() => {
@@ -58,7 +108,11 @@ class GamePage extends Component {
         /* départ des objets */
         const departObjet = (monObjet) => {
             monObjet.style.bottom = "-" + Math.floor(Math.random()*1000) - monObjet.offsetHeight + "px";
-            monObjet.style.left = (Math.floor(Math.random() * (975 - 128 + 1)) + 128) + "px";
+            if(window.innerWidth <= 575.98){
+                monObjet.style.left = (Math.floor(Math.random() * ((window.innerWidth - 90) - 48 + 1)) + 48) + "px";
+            } else {
+                monObjet.style.left = (Math.floor(Math.random() * (975 - 128 + 1)) + 128) + "px";
+            }
         };
 
         (() => {
@@ -77,7 +131,7 @@ class GamePage extends Component {
         const animation = () => {
 
             rafId = requestAnimationFrame(animation);
-            
+
             /* objets animés */
             if( this.fenetreGauche.current &&
                 this.fenetreDroite.current &&
@@ -106,13 +160,23 @@ class GamePage extends Component {
                             top2.current.style.top = top1 + "px";
                         }
 
-                        slideUp(objTop.fenetreGaucheTop,this.fenetreGauche, 6);
-                        slideUp(objTop.fenetreDroiteTop,this.fenetreDroite, 6);
-                        slideUp(objTop.fantomeRougeCollTop,this.fantomeRougeColl, 7);
-                        slideUp(objTop.boulePiqueCollTop,this.boulePiqueColl, 6);
-                        slideUp(objTop.pieceHtml5Top,this.pieceHtml5, 6);
-                        slideUp(objTop.pieceCss3Top,this.pieceCss3, 6);
-                        slideUp(objTop.pieceJsTop,this.pieceJs, 6);
+                        if(window.innerWidth <= 575.98){
+                            slideUp(objTop.fenetreGaucheTop,this.fenetreGauche, 4);
+                            slideUp(objTop.fenetreDroiteTop,this.fenetreDroite, 4);
+                            slideUp(objTop.fantomeRougeCollTop,this.fantomeRougeColl, 5);
+                            slideUp(objTop.boulePiqueCollTop,this.boulePiqueColl, 4);
+                            slideUp(objTop.pieceHtml5Top,this.pieceHtml5, 4);
+                            slideUp(objTop.pieceCss3Top,this.pieceCss3, 4);
+                            slideUp(objTop.pieceJsTop,this.pieceJs, 4);
+                        } else {
+                            slideUp(objTop.fenetreGaucheTop,this.fenetreGauche, 6);
+                            slideUp(objTop.fenetreDroiteTop,this.fenetreDroite, 6);
+                            slideUp(objTop.fantomeRougeCollTop,this.fantomeRougeColl, 7);
+                            slideUp(objTop.boulePiqueCollTop,this.boulePiqueColl, 6);
+                            slideUp(objTop.pieceHtml5Top,this.pieceHtml5, 6);
+                            slideUp(objTop.pieceCss3Top,this.pieceCss3, 6);
+                            slideUp(objTop.pieceJsTop,this.pieceJs, 6);
+                        }
 
                         /* niveau et vitesse de jeu */
                         const niveau = (scoreAtteint, vitesse, vitesseFantome) => {
@@ -136,22 +200,41 @@ class GamePage extends Component {
                             };
                         };
                         
-                        if( this.state.score >= 5000 ){
-                            niveau(5000, 8, 9);
-                            if(fantomeVertLeft < -840){
-                                fantomeVertLeft = 0;
+                        if(window.innerWidth <= 575.98){
+                            if( this.state.score >= 5000 ){
+                                niveau(5000, 6, 7);
+                                if(fantomeVertLeft < -840){
+                                    fantomeVertLeft = 0;
+                                };
+                                this.fantomeVert.current.style.left = fantomeVertLeft + "px";
+                                slideUp(objTop.fantomeVertCollTop,this.fantomeVertColl, 1);
                             };
-                            this.fantomeVert.current.style.left = fantomeVertLeft + "px";
-                            slideUp(objTop.fantomeVertCollTop,this.fantomeVertColl, 1);
-                        };
-                    
-                        if( this.state.score >= 10000 ){
-                            niveau(10000, 2, 2);
-                        };
-                    
-                        if( this.state.score >= 15000 ){
-                            niveau(15000, 2, 2);
-                        }; 
+                        
+                            if( this.state.score >= 10000 ){
+                                niveau(10000, 1, 1);
+                            };
+                        
+                            if( this.state.score >= 15000 ){
+                                niveau(15000, 1, 1);
+                            }; 
+                        } else {
+                            if( this.state.score >= 5000 ){
+                                niveau(5000, 8, 9);
+                                if(fantomeVertLeft < -840){
+                                    fantomeVertLeft = 0;
+                                };
+                                this.fantomeVert.current.style.left = fantomeVertLeft + "px";
+                                slideUp(objTop.fantomeVertCollTop,this.fantomeVertColl, 1);
+                            };
+                        
+                            if( this.state.score >= 10000 ){
+                                niveau(10000, 2, 2);
+                            };
+                        
+                            if( this.state.score >= 15000 ){
+                                niveau(15000, 2, 2);
+                            }; 
+                        }
 
                     })();
             }
@@ -181,7 +264,11 @@ class GamePage extends Component {
                         const start = (start1, start2) => {
                             if(this.fondVert.current.offsetTop >= start1){
                                 start2.current.style.top = this.fondVert.current.offsetHeight + Math.floor(Math.random()*1000) + "px";
-                                start2.current.style.left = (Math.floor(Math.random() * (975 - 128 + 1)) + 128) + "px";
+                                if(window.innerWidth <= 575.98){
+                                    start2.current.style.left = (Math.floor(Math.random() * ((window.innerWidth -90) - 48 + 1)) + 48) + "px";
+                                } else {
+                                    start2.current.style.left = (Math.floor(Math.random() * (975 - 128 + 1)) + 128) + "px";
+                                }
                             };
                         };
 
@@ -196,9 +283,16 @@ class GamePage extends Component {
 
             /* boucle du sprite */
             (() => {
-                if(joueurOffLeft < -480){
-                    joueurOffLeft = -10;
-                };
+                if(window.innerWidth <= 575.98){
+                    if(joueurOffLeft < -320){
+                        joueurOffLeft = -6;
+                    };
+                } else {
+                    if(joueurOffLeft < -480){
+                        joueurOffLeft = -12;
+                    };
+                }
+                
                 if(joueurRef.current){
                     joueurRef.current.style.left = joueurOffLeft + "px";
                 }
@@ -249,6 +343,7 @@ class GamePage extends Component {
                                 cancelAnimationFrame(rafId);
                                 this.props.game();
                                 this.props.nav();
+                                this.fondVert.current.style.display = "none";
                         };
 
                         /* detection pièces*/
@@ -258,7 +353,11 @@ class GamePage extends Component {
                                 objCoord.coordMasque.top < obj1.top + obj1.height &&
                                 objCoord.coordMasque.height + objCoord.coordMasque.top > obj1.top){
                                     obj2.style.top = this.fondVert.current.offsetHeight + Math.floor(Math.random()*1000) + "px";
-                                    obj2.style.left = (Math.floor(Math.random() * (975 - 128 + 1)) + 128) + "px";
+                                    if(window.innerWidth <= 575.98){
+                                        obj2.style.left = (Math.floor(Math.random() * ((window.innerWidth - 90) - 48 + 1)) + 48) + "px";
+                                    } else {
+                                        obj2.style.left = (Math.floor(Math.random() * (975 - 128 + 1)) + 128) + "px";
+                                    }
                                     this.setState({
                                         score: this.state.score + points
                                     });
@@ -272,138 +371,169 @@ class GamePage extends Component {
                     })();
                 }
         }
+        
         setTimeout(() => {
 
             /* mouvement joueur */
             document.addEventListener("keydown", function(event){
                 const direction = event.keyCode;
 
-                switch(direction){
-                    case 37:
-                        /* direction gauche */
-                        joueurCollOffLeft -= 15;
-                        if(joueurCollRef.current){
-                            joueurCollRef.current.style.left = joueurCollOffLeft + "px";
-                            joueurRef.current.style.top = "-13px";
-                        }
-
-                        /* délimitation du joueur */
-                        if(joueurCollOffLeft <= 128 && joueurCollRef.current){
-                            joueurCollOffLeft = 128;
-                            joueurCollRef.current.style.left = "128px";
-                        };
-                        if(joueurCollOffLeft >= 1000 && joueurCollRef.current){
-                            joueurCollOffLeft = 1000;
-                            joueurCollRef.current.style.left = "1000px";
-                        };
-                        break;
-                    case 39:
-                        /* direction droite */
-                        joueurCollOffLeft += 15;
-                        if(joueurCollRef.current){
-                            joueurCollRef.current.style.left = joueurCollOffLeft + "px";
-                            joueurRef.current.style.top = "-163px";
-                        }
-
-                        /* délimitation du joueur */
-                        if(joueurCollOffLeft <= 128 && joueurCollRef.current){
-                            joueurCollOffLeft = 128;
-                            joueurCollRef.current.style.left = "128px";
-                        };
-                        if(joueurCollOffLeft >= 1000 && joueurCollRef.current){
-                            joueurCollOffLeft = 1000;
-                            joueurCollRef.current.style.left = "1000px";
-                        };
-                        break;
-                    default:
-                        break;
-                };
-            });
-            animation();
-        }, 3000);
-    }
-
-    render(){
-        return (
-              this.props.stateNav ? <NavPage 
-                nav={ this.props.nav } 
-                stateNav={ this.props.stateNav }
-                stateGame={ this.props.stateGame }
-              /> :
-            <div className={ Style.container } ref={ this.fondVert }>
-                <div className={ Style.tour }>
-
-                    {/* Fenêtres Tour */}
-                    <img className={ Style.fenetreGauche } 
-                         src={require("../../assets/img/fenetreGauche.svg")} 
-                         alt="fenêtre"
-                         ref={ this.fenetreGauche }
-                    />
-                    <img className={ Style.fenetreDroite } 
-                         src={require("../../assets/img/fenetreDroite.svg")} 
-                         alt="fenêtre"
-                         ref={ this.fenetreDroite }
-                    />
-
-                    {/* Joueur */}
-                    <div className={ Style.persoCollision } ref={ this.joueurCollRef }>
-                        <div className={ Style.masquePerso }>
-                            <img className={ Style.perso } 
-                                 src={require("../../assets/img/spritePerso.svg")} 
-                                 alt="personnage"
-                                 ref={ this.joueurRef }/>
-                        </div>
-                    </div>
-                    <div className={ Style.fantomeRougeColl } ref={ this.fantomeRougeColl }>
-                        <div className={ Style.masqueFantomeRouge }>
-                            <img className={ Style.fantomeRouge } 
-                                 src={require("../../assets/img/spriteFantomeRouge.svg")} 
-                                 alt="fantome rouge"
-                                 ref={ this.fantomeRouge }
-                            />
-                        </div>
-                    </div>
-                    <div className={ Style.fantomeVertColl } ref={ this.fantomeVertColl }>
-                        <div className={ Style.masqueFantomeVert }>
-                            <img className={ Style.fantomeVert } 
-                                 src={require("../../assets/img/spriteFantomeVert.svg")} 
-                                 alt="fantome vert"
-                                 ref={ this.fantomeVert }
-                            />
-                        </div>
-                    </div>
-                    <div className={ Style.boulePiqueColl } ref={ this.boulePiqueColl }>
-                        <img className={ Style.boulePique } 
-                             src={require("../../assets/img/boulePique.svg")} 
-                             alt="boule avec des piques"
-                        />
-                    </div>
-                    <img className={ Style.pieceJs } 
-                         src={require("../../assets/img/pieceJs.svg")} 
-                         alt="pièce javascript"
-                         ref={ this.pieceJs }
-                    />
-                    <img className={ Style.pieceCss3 } 
-                         src={require("../../assets/img/pieceCss3.svg")} 
-                         alt="pièce css"
-                         ref={ this.pieceCss3 }
-                    />
-                    <img className={ Style.pieceHtml5 } 
-                         src={require("../../assets/img/pieceHtml5.svg")} 
-                         alt="pièce html"
-                         ref={ this.pieceHtml5 }
-                    />
-                    
-                </div>
-                <div className={ Style.scoreDuJeu }>
-                    <p>score</p>
-                    <span>{ this.state.score }</span>
-                </div>
-                { this.state.compteur === 0 ? 
-                    null :
-                    <div className={ Style.compteur }>{ this.state.compteur }</div>
+                if(window.innerWidth <= 575.98){
+                    switch(direction){
+                        case 37:
+                            return false;
+                        case 39:
+                            return false;
+                        default:
+                            break;
+                    };
+                } else {
+                    switch(direction){
+                        case 37:
+                            /* direction gauche */
+                            joueurCollOffLeft -= 15;
+                            if(joueurCollRef.current){
+                                joueurCollRef.current.style.left = joueurCollOffLeft + "px";
+                                joueurRef.current.style.top = "-13px";
+                            }
+    
+                            /* délimitation du joueur */
+                            if(joueurCollOffLeft <= 128 && joueurCollRef.current){
+                                joueurCollOffLeft = 128;
+                                joueurCollRef.current.style.left = "128px";
+                            };
+                            if(joueurCollOffLeft >= 1000 && joueurCollRef.current){
+                                joueurCollOffLeft = 1000;
+                                joueurCollRef.current.style.left = "1000px";
+                            };
+                            break;
+                        case 39:
+                            /* direction droite */
+                            joueurCollOffLeft += 15;
+                            if(joueurCollRef.current){
+                                joueurCollRef.current.style.left = joueurCollOffLeft + "px";
+                                joueurRef.current.style.top = "-163px";
+                            }
+    
+                            /* délimitation du joueur */
+                            if(joueurCollOffLeft <= 128 && joueurCollRef.current){
+                                joueurCollOffLeft = 128;
+                                joueurCollRef.current.style.left = "128px";
+                            };
+                            if(joueurCollOffLeft >= 1000 && joueurCollRef.current){
+                                joueurCollOffLeft = 1000;
+                                joueurCollRef.current.style.left = "1000px";
+                            };
+                            break;
+                        default:
+                            break;
+                    };
                 }
-            </div>
+            });
+            // animation();
+        }, 3000);
+        if(this.props.stateNav === true){
+            cancelAnimationFrame(rafId);
+        }
+    }
+    
+    render(){
+        console.log(this.props)
+        return (
+            <>  
+                <NavPage 
+                    nav={ this.props.nav } 
+                    stateNav={ this.props.stateNav }
+                    stateGame={ this.props.stateGame }
+                />
+                <div className={ Style.container } ref={ this.fondVert }>
+                    <div className={ Style.tour }>
+
+                        {/* Fenêtres Tour */}
+                        <img className={ Style.fenetreGauche } 
+                            src={require("../../assets/img/fenetreGauche.svg")} 
+                            alt="fenêtre"
+                            ref={ this.fenetreGauche }
+                        />
+                        <img className={ Style.fenetreDroite } 
+                            src={require("../../assets/img/fenetreDroite.svg")} 
+                            alt="fenêtre"
+                            ref={ this.fenetreDroite }
+                        />
+
+                        {/* Joueur */}
+                        <div className={ Style.persoCollision } ref={ this.joueurCollRef }>
+                            <div className={ Style.masquePerso }>
+                                <img className={ Style.perso } 
+                                    src={require("../../assets/img/spritePerso.svg")} 
+                                    alt="personnage"
+                                    ref={ this.joueurRef }/>
+                            </div>
+                        </div>
+                        <div className={ Style.fantomeRougeColl } ref={ this.fantomeRougeColl }>
+                            <div className={ Style.masqueFantomeRouge }>
+                                <img className={ Style.fantomeRouge } 
+                                    src={require("../../assets/img/spriteFantomeRouge.svg")} 
+                                    alt="fantome rouge"
+                                    ref={ this.fantomeRouge }
+                                />
+                            </div>
+                        </div>
+                        <div className={ Style.fantomeVertColl } ref={ this.fantomeVertColl }>
+                            <div className={ Style.masqueFantomeVert }>
+                                <img className={ Style.fantomeVert } 
+                                    src={require("../../assets/img/spriteFantomeVert.svg")} 
+                                    alt="fantome vert"
+                                    ref={ this.fantomeVert }
+                                />
+                            </div>
+                        </div>
+                        <div className={ Style.boulePiqueColl } ref={ this.boulePiqueColl }>
+                            <img className={ Style.boulePique } 
+                                src={require("../../assets/img/boulePique.svg")} 
+                                alt="boule avec des piques"
+                            />
+                        </div>
+                        <img className={ Style.pieceJs } 
+                            src={require("../../assets/img/pieceJs.svg")} 
+                            alt="pièce javascript"
+                            ref={ this.pieceJs }
+                        />
+                        <img className={ Style.pieceCss3 } 
+                            src={require("../../assets/img/pieceCss3.svg")} 
+                            alt="pièce css"
+                            ref={ this.pieceCss3 }
+                        />
+                        <img className={ Style.pieceHtml5 } 
+                            src={require("../../assets/img/pieceHtml5.svg")} 
+                            alt="pièce html"
+                            ref={ this.pieceHtml5 }
+                        />
+                        { window.innerWidth <= 575.98 ? 
+                        <div className={ Style.flechesDir }>
+                            <img className={ Style.flecheGauche } 
+                                 src={require("../../assets/img/flecheGauche.svg")} 
+                                 alt="flèche directionnelle gauche"
+                                 onClick={() => this.gauche()}
+                            />
+                            <img className={ Style.flecheDroite } 
+                                 src={require("../../assets/img/flecheDroite.svg")} 
+                                 alt="flèche directionnelle droite"
+                                 onClick={() => this.droite()}
+                            />
+                        </div>
+                        : null }
+                    </div>
+                    <div className={ Style.scoreDuJeu }>
+                        <p>score</p>
+                        <span>{ this.state.score }</span>
+                    </div>
+                    { this.state.compteur === 0 ? 
+                        null :
+                        <div className={ Style.compteur }>{ this.state.compteur }</div>
+                    }
+                </div>
+            </>
         )
     }
 }
