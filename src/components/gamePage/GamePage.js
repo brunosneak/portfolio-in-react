@@ -344,6 +344,7 @@ class GamePage extends Component {
                                 this.props.game();
                                 this.props.nav();
                                 this.fondVert.current.style.display = "none";
+                                
                         };
 
                         /* detection pièces*/
@@ -430,7 +431,7 @@ class GamePage extends Component {
                     };
                 }
             });
-            // animation();
+            animation();
         }, 3000);
         if(this.props.stateNav === true){
             cancelAnimationFrame(rafId);
